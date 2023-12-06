@@ -1,0 +1,83 @@
+@media (min-width: 1800px){
+    div.container {
+        max-width: 1800px;
+    }
+}
+
+.yes{background-color: green; color: white;    padding: 4px; font-weight: bolder;}
+.are_all_good_stock_yes{ background-color: green; color: darkorange; font-weight: bolder;}
+@media (min-width: 1400px){
+    .container {
+        max-width: 1400px;
+    }
+}
+.mb-30{margin-bottom: 30px;}
+.mb-60{margin-bottom: 60px;}
+.dt-range-sub{padding: 0.100rem .75rem;}
+
+/*Date picker start*/
+.htm-date-container {
+    position: relative;
+    float: left;
+}
+
+.htm-date {
+    border: 1px solid #1cbaa5;
+    padding: 5px 10px;
+    height: 30px;
+    width: 165px;
+}
+
+.open-date-button {
+    position: absolute;
+    top: 3px;
+    left: 145px;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    pointer-events: none;
+}
+
+.open-date-button button {
+    border: none;
+    background: transparent;
+}
+/*Date picker end*/
+.sort-dd-menu.show{border: 2px solid darkgreen;}
+/*th.is_on_filter_yes{background: yellow;}*/
+
+
+/*Make header fixed of table start*/
+.table-responsive{
+    overflow:scroll;
+}
+.table-responsive thead tr:nth-child(1) th{
+    background: white;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+/*Make header fixed of table end*/  
+.is_on_filter_yes{background: yellow !important;}
+/*Make 2nd column fixed of table start*/
+.table-responsive thead tr th:nth-child(2), td:nth-child(2)
+{
+    position: -webkit-sticky;
+    position:sticky;
+    left:0px;
+
+}
+.table-responsive thead tr td:nth-child(2)
+{
+    background-color:white; color: #fff;
+}
+
+/*Make 2nd column fixed of table end*/ 
+
+.col-green{
+    color: green; 
+ }
+ .col-red{
+    color: red; 
+ }
