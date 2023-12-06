@@ -257,7 +257,7 @@ class Companies extends MX_Controller {
                     $company_id = !empty($company_info->id) ? $company_info->id : 0;
                     $cm_company_status = !empty($company_info->status) ? $company_info->status : 0; # cash market company status, if status is 3 then it is index
                     
-                    $stk_or_index = ( $cm_company_status==1 ) ? 1 : ( $cm_company_status== 3 ) ? 2 : 0; # we will set 1 means equity and 2 means index
+                    $stk_or_index = ($cm_company_status == 1) ? 1 : (($cm_company_status == 3) ? 2 : 0); # we will set 1 means equity and 2 means index
                     
                     if( $company_id > 0 ){
 

@@ -199,7 +199,7 @@ class Sectors_Controller extends MX_Controller {
         
         $stock_date = (empty($sector_data[0]->stock_date)) ? date('Y-m-d') : $sector_data[0]->stock_date;
         
-        $total = count($sector_data);
+        $total = is_array($sector_data) ? count($sector_data) : 0;
         
 //        $data['nestedData']['nifty_last_price'] = $sector_data[$total-1]->ltp;
         $data['nestedData']['total'] = $total;

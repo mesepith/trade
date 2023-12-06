@@ -104,7 +104,10 @@
     </div>
     
     <?php if( !empty($sector_name) ){ ?>
-    <h2><?php echo 'Analysis of <b>' . $sector_data[0]->index_name . '</b> on ' . date('d M Y', strtotime($stock_date) ); ?></h2>
+        <?php if( !empty($sector_data) && is_array($sector_data) ){ ?>
+            <h2><?php echo 'Analysis of <b>' . $sector_data[0]->index_name . '</b> on ' . date('d M Y', strtotime($stock_date) ); ?></h2>
+        <?php } ?>
+
     <?php } ?>
     
     <form method="get" action="<?php echo base_url(); ?>">

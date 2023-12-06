@@ -74,20 +74,26 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 if(ENVIRONMENT == 'production'){
-	$db_pass = "natureZ1#";
-	$db_name = "trade";
+	$db_host = '127.0.0.1';	
+	$db_name = "u797334786_trade";
+	$db_user_name = 'u797334786_zahir_stock';	
+	$db_pass = "kinaSell1$"; 
 }else if(ENVIRONMENT == 'testing'){
-	$db_pass = "natureZ1#";
-	$db_name = "pilot_trade";
+	$db_host = 'localhost';	
+	$db_name = "u797334786_trade";
+	$db_user_name = 'u797334786_zahir_stock';
+	$db_pass = "kinaSell1$";
 }else if(ENVIRONMENT == 'development'){
-	$db_pass = "";
+	$db_host = 'localhost';	
 	$db_name = DEV_DB;
+	$db_user_name = 'root';
+	$db_pass = "";
 }
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
+	'hostname' => $db_host,
+	'username' => $db_user_name,
 	'password' => $db_pass,
 	'database' => $db_name,
 	'dbdriver' => 'mysqli',

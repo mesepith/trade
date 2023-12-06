@@ -103,7 +103,7 @@ class Stock_Fetch_Contr extends MX_Controller {
             $company_id = $company_list_value['id'];
             
             echo '<br/><br/>$company_id ' . $company_id;
-            echo '<br/><br/>$company_symbol ' . $company_symbol;
+            echo '<br/><br/>$company_symbol ' . $company_symbol . '<br/> <br/>';
             
             $this->crawlStockData($company_id, $company_symbol, $Python_contr, $System_Notification_contr, $Send_Api_Contr, $market_running, $Nse_Contr);
                         
@@ -153,6 +153,14 @@ class Stock_Fetch_Contr extends MX_Controller {
         
         
         $stk_data = $this->curlStkPrice(urlencode($company_symbol), $Nse_Contr);
+
+        if (!empty($stk_data) && is_array($stk_data)) {
+
+        }else{
+            echo 'Stock Data is empty';
+            return;
+        }
+        
         
         if( $stk_data['metadata']['lastUpdateTime'] === '-' && $stk_data['metadata']['listingDate'] ==='NA' && empty($stk_data['priceInfo']) ){
             
@@ -214,24 +222,29 @@ class Stock_Fetch_Contr extends MX_Controller {
 //        print_r($raw_data_arr); exit;
         
         /*New*/
-        $whole_data['noBlockDeals'] = trim($stk_data_other['noBlockDeals']);
+        if (!empty($stk_data_other) && is_array($stk_data_other)) {
+
+            $whole_data['noBlockDeals'] = trim($stk_data_other['noBlockDeals']);
+            
+            $whole_data['totalBuyQuantity'] = trim($stk_data_other['marketDeptOrderBook']['totalBuyQuantity']);
+            $whole_data['totalSellQuantity'] = trim($stk_data_other['marketDeptOrderBook']['totalSellQuantity']);
+            
+            $whole_data['totalTradedVolume'] = trim($stk_data_other['marketDeptOrderBook']['tradeInfo']['totalTradedVolume']);
+            $whole_data['totalTradedValue'] = trim($stk_data_other['marketDeptOrderBook']['tradeInfo']['totalTradedValue']);
+            
+            /*New*/
+            $whole_data['totalMarketCap'] = trim($stk_data_other['marketDeptOrderBook']['tradeInfo']['totalMarketCap']);
+            
+            /*New*/
+            $whole_data['quantityTraded'] = trim($stk_data_other['securityWiseDP']['quantityTraded']);
+            
+            
+            $whole_data['deliveryQuantity'] = trim($stk_data_other['securityWiseDP']['deliveryQuantity']);
+            $whole_data['deliveryToTradedQuantity'] = trim($stk_data_other['securityWiseDP']['deliveryToTradedQuantity']);
         
-        $whole_data['totalBuyQuantity'] = trim($stk_data_other['marketDeptOrderBook']['totalBuyQuantity']);
-        $whole_data['totalSellQuantity'] = trim($stk_data_other['marketDeptOrderBook']['totalSellQuantity']);
-        
-        $whole_data['totalTradedVolume'] = trim($stk_data_other['marketDeptOrderBook']['tradeInfo']['totalTradedVolume']);
-        $whole_data['totalTradedValue'] = trim($stk_data_other['marketDeptOrderBook']['tradeInfo']['totalTradedValue']);
-        
-        /*New*/
-        $whole_data['totalMarketCap'] = trim($stk_data_other['marketDeptOrderBook']['tradeInfo']['totalMarketCap']);
-        
-        /*New*/
-        $whole_data['quantityTraded'] = trim($stk_data_other['securityWiseDP']['quantityTraded']);
-        
-        
-        $whole_data['deliveryQuantity'] = trim($stk_data_other['securityWiseDP']['deliveryQuantity']);
-        $whole_data['deliveryToTradedQuantity'] = trim($stk_data_other['securityWiseDP']['deliveryToTradedQuantity']);
-        
+        }else{
+            echo '<br/><br/> $stk_data_other is empty';
+        }
         
         /*
          * Find Number of trades Start
@@ -482,8 +495,11 @@ class Stock_Fetch_Contr extends MX_Controller {
         
         $referer = 'https://www.nseindia.com/get-quotes/equity?symbol=' . $company_symbol;
         
+        // echo "<br/> <br/>";
         $return  = $Nse_Contr->curlNse($url, $referer);
-        
+        // echo "<br/> <br/>";
+        // echo 'returnzz ::: ';
+        // echo '<pre>'; print_r($return); exit;
         return $return;
         
     }

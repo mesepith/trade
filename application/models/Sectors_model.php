@@ -207,7 +207,7 @@ class Sectors_model extends CI_Model {
             
 //            echo count($data);
             
-            if( count($data) >  0 ){
+            if (is_array($data) && count($data) > 0) {
                 
                 return $data;
             }

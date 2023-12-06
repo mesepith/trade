@@ -89,13 +89,13 @@ class Python_Controller extends MX_Controller {
         $stock_data_arr["day_high_price"] = $whole_data['dayHigh'];
         $stock_data_arr["day_low_price"] = $whole_data['dayLow'];
         
-        $stock_data_arr["total_traded_volume"] = $whole_data['totalTradedVolume'];
-        $stock_data_arr["delivery_quantity"] = $whole_data['deliveryQuantity'];
-        $stock_data_arr["delivery_to_traded_quantity"] = $whole_data['deliveryToTradedQuantity'];
+        $stock_data_arr["total_traded_volume"] =(!empty($whole_data['totalTradedVolume'])) ? $whole_data['totalTradedVolume']: '';
+        $stock_data_arr["delivery_quantity"] = (!empty($whole_data['deliveryQuantity'])) ? $whole_data['deliveryQuantity']: '';
+        $stock_data_arr["delivery_to_traded_quantity"] = (!empty($whole_data['deliveryToTradedQuantity'])) ? $whole_data['deliveryToTradedQuantity']: '';
         
-        $stock_data_arr["total_buy_quantity"] = $whole_data['totalBuyQuantity'];
-        $stock_data_arr["total_sell_quantity"] = $whole_data['totalSellQuantity'];
-        $stock_data_arr["total_traded_value"] = $whole_data['totalTradedValue'];
+        $stock_data_arr["total_buy_quantity"] = (!empty($whole_data['totalBuyQuantity'])) ? $whole_data['totalBuyQuantity']: '';;
+        $stock_data_arr["total_sell_quantity"] = (!empty($whole_data['totalSellQuantity'])) ? $whole_data['totalSellQuantity']: '';;
+        $stock_data_arr["total_traded_value"] = (!empty($whole_data['totalTradedValue'])) ? $whole_data['totalTradedValue'] : '';
         
         
         $stock_date_timestamp = strtotime($whole_data['secDate']);
@@ -129,11 +129,11 @@ class Python_Controller extends MX_Controller {
         $stock_data_arr["year_week_high"] = $whole_data['yearWeekHigh'];
         $stock_data_arr["year_week_high_date"] = $whole_data['yearWeekHighDate'];
         
-        $stock_data_arr["no_block_deals"] = $whole_data['noBlockDeals'];
+        $stock_data_arr["no_block_deals"] = (!empty($whole_data['noBlockDeals'])) ? $whole_data['noBlockDeals'] : '';
         
-        $stock_data_arr["total_market_cap"] = $whole_data['totalMarketCap'];
+        $stock_data_arr["total_market_cap"] = (!empty($whole_data['totalMarketCap'])) ? $whole_data['totalMarketCap'] : '';
         
-        $stock_data_arr["quantity_traded"] = $whole_data['quantityTraded'];
+        $stock_data_arr["quantity_traded"] = (!empty($whole_data['quantityTraded'])) ? $whole_data['quantityTraded'] : '';
         
         /* if( $data_log_arr['market_running'] == 0 ){
         
