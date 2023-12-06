@@ -1,0 +1,14 @@
+application/logs/*
+nbproject/*
+nbproject/private/private.xml
+nbproject/private/private.properties
+nbproject/project.properties
+nbproject/project.xml
+fetchz-py/nsetools/__pycache__/*
+fetchz-py/option/__pycache__/*
+fetchz-py/fii/__pycache__/*
+fetchz-py/future/__pycache__/*
+fetchz-py/screener/__pycache__/*
+assets/fii-dii/nsdl-sector-invest/*
+fetchz-py/rbi/__pycache__/
+.htaccess
