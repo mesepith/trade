@@ -316,7 +316,7 @@ class Companies_model extends CI_Model {
         $this->db->where('status', 1); 
         $this->db->where('stock_date', date('Y-m-d'));
 //        $this->db->where('stock_date', '2020-04-17');
-        $this->db->select('company_id');
+        // $this->db->select('company_id');
         $this->db->order_by('id desc');
         $this->db->limit('1');
         $this->db->select('company_id, updated_at');

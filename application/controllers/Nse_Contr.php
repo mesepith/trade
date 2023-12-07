@@ -46,7 +46,9 @@ class Nse_Contr extends MX_Controller {
     }
     
     function curlNse($url, $referer){        
-        
+        // echo "<br/> <br/>";
+        // echo 'url in curlNse:: '. $url;
+        // echo "<br/> <br/>";
         return $this->curlNseShareholding( $url, $referer );
         
         $part1= "'".$url."' ";
@@ -117,16 +119,22 @@ class Nse_Contr extends MX_Controller {
         $cookie['nseappid'] = $this->fetch_nse_cookies_model->getActiveCookieByType('nseappid');
         $cookie['nsit'] = $this->fetch_nse_cookies_model->getActiveCookieByType('nsit');
 
-        $url = htmlentities($url);
-        $referer = htmlentities($referer);
+        // $url = htmlentities($url);
+        // $referer = htmlentities($referer);
         
         //$cmd = "curl $url -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0' -H 'Accept: */*' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H 'Connection: keep-alive' -H 'Referer: $referer' -H 'Cookie: nsit=".$cookie['nsit'].";  nseappid=".$cookie['nseappid']."' -H 'TE: Trailers'";
-        $cmd = "curl '{$url}' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0' -H 'Accept: */*' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H 'Connection: keep-alive' -H 'Referer: {$referer}' -H 'Cookie: nsit={$cookie['nsit']};  nseappid={$cookie['nseappid']}' -H 'TE: Trailers'";
+        //$cmd = "curl '{$url}' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0' -H 'Accept: */*' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H 'Connection: keep-alive' -H 'Referer: {$referer}' -H 'Cookie: nsit={$cookie['nsit']};  nseappid={$cookie['nseappid']}' -H 'TE: Trailers'";
 
+        $url = escapeshellcmd($url);
+        $referer = escapeshellcmd($referer);
+        $cmd = "curl {$url} -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0' -H 'Accept: */*' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H 'Connection: keep-alive' -H 'Referer: {$referer}' -H 'Cookie: nsit={$cookie['nsit']};  nseappid={$cookie['nseappid']}' -H 'TE: Trailers'";
 
     //    echo $cmd;
-//        echo "<br/> <br/>";
+    //    echo "<br/> <br/>";
         
+    //    echo '<br/><br/> exec cmd <br/>';
+    //    echo exec($cmd);
+    //    echo '<br/><br/>';
         // exit;
         
         $output = json_decode(exec($cmd) , true);
