@@ -9,7 +9,10 @@ class Stock_Fetch_Contr extends MX_Controller {
     
     public function fetchCompaniesStkData(){
         
+        $Python_contr = new Python_Controller();
         $Nse_Contr = new Nse_Contr();
+
+        $Python_contr->executeCookieScript();
         
         $check_open_and_closing_price = $Nse_Contr->checkMarketIsOpenedToday();
         
@@ -76,8 +79,6 @@ class Stock_Fetch_Contr extends MX_Controller {
             $market_running = 0;
             
         }
-        
-        $Python_contr = new Python_Controller();
                
         $System_Notification_contr = new System_Notification_Controller();
         
@@ -359,7 +360,10 @@ class Stock_Fetch_Contr extends MX_Controller {
      */
     function findVolumeByTrade(){
         
+        $Python_contr = new Python_Controller();
         $Nse_Contr = new Nse_Contr();
+
+        $Python_contr->executeCookieScript();
         
         $check_open_and_closing_price = $Nse_Contr->checkMarketIsOpenedToday();
         

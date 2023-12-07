@@ -178,9 +178,16 @@ class Python_Controller extends MX_Controller {
         echo json_encode($whole_data['price_date_time']); exit;
         
     }
-    
-    public function executeCookieScript(){
 
+    /*
+    @author: ZAHIR
+    DESC: excute python script that insert cookies
+    */
+    public function executeCookieScript(){
+        $command = '/home/u797334786/zahir-py-env/bin/python3 /home/u797334786/domains/fetch-nsit-and-nseappid.py';
+        $output = exec($command);
+        echo $output;
+        echo '<br/><br/>';
     }
     
 
