@@ -16,7 +16,7 @@ class Stock_Fetch_Contr extends MX_Controller {
     //    echo '<pre>';
     //    print_r($check_open_and_closing_price); exit;
         // echo 'check_open_and_closing_price :: ' . $check_open_and_closing_price; exit;
-        if( $check_open_and_closing_price === 'no' ){ exit; return; }/* Check if market is open, if returns no then exit */
+        if( $check_open_and_closing_price === 'no' ){ echo 'here'; exit; return; }/* Check if market is open, if returns no then exit */
         // echo 'here'; exit;
 //        echo '$is_open : ' . $is_open;
         
@@ -158,6 +158,8 @@ class Stock_Fetch_Contr extends MX_Controller {
 
         }else{
             echo 'Stock Data is empty';
+            echo '<pre>'; print_r($stk_data);
+            echo '<br/>';
             return;
         }
         

@@ -108,7 +108,7 @@ class Nse_Contr extends MX_Controller {
     
     function curlNseShareholding( $url, $referer  ){                
 
-        set_time_limit(10); //in seconds
+        //set_time_limit(10); //in seconds
 
         // for($i=0; $i<500000000; $i++){}
     //    $url = "https://www.nseindia.com/api/quote-equity?symbol=GAIL";        

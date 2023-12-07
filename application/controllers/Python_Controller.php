@@ -179,5 +179,9 @@ class Python_Controller extends MX_Controller {
         
     }
     
+    public function executeCookieScript(){
+
+    }
+    
 
 }
