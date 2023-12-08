@@ -159,6 +159,8 @@ if (ENVIRONMENT === "development") {
 //    define('PARENT_OC_WEB_SERVER','http://localhost/'.DEV_MAIN_FOLDER.'/');
     define('PARENT_OC_WEB_SERVER','https://option.ampstart.co/');
     define('PARENT_FUTURE_WEB_SERVER','http://localhost/'.DEV_MAIN_FOLDER.'/');
+
+    define('PYTHON_COOKIE_SCRIPT_NAME', "staging-fetch-nsit-and-nseappid.py");
     
 } else if (ENVIRONMENT === "testing") {
 
@@ -171,6 +173,8 @@ if (ENVIRONMENT === "development") {
     define('PARENT_WEB_SERVER','https://pilot.ampstart.co/');
     define('PARENT_OC_WEB_SERVER','https://pilot-option.ampstart.co/');
     define('PARENT_FUTURE_WEB_SERVER','https://pilot.ampstart.co/');
+
+    define('PYTHON_COOKIE_SCRIPT_NAME', "staging-fetch-nsit-and-nseappid.py");
     
 } else if (ENVIRONMENT === "production") {
 
@@ -183,6 +187,8 @@ if (ENVIRONMENT === "development") {
     define('PARENT_WEB_SERVER','https://www.ampstart.co/');
     define('PARENT_OC_WEB_SERVER','https://option.ampstart.co/');
     define('PARENT_FUTURE_WEB_SERVER','https://www.ampstart.co/');
+
+    define('PYTHON_COOKIE_SCRIPT_NAME', "fetch-nsit-and-nseappid.py");
 }
 define('PROTOCOL_HOST', PROTOCOL . "://" . $_SERVER['HTTP_HOST']);
 define('YTB_PAGE_LIST_LIMIT', 21);
