@@ -366,7 +366,12 @@ setlocale(LC_MONETARY,"en_IN.utf8");
                     <td>
                         <?php 
                             $total_traded_volume = $total_traded_volume + $stock_detail_value->total_traded_volume; 
-                            echo money_format('%!.0n', $stock_detail_value->total_traded_volume); 
+                            //echo money_format('%!.0n', $stock_detail_value->total_traded_volume); 
+
+                            // $indian_format = new NumberFormatter('en_IN', NumberFormatter::DECIMAL);
+                            // echo $indian_format->format($stock_detail_value->total_traded_volume);
+                            echo indianNumberFormat($stock_detail_value->total_traded_volume);
+
                         ?>
                         
                         <?php if( $stock_detail_key!=0 and $stock_detail_value->total_traded_volume > $stock_detail[$stock_detail_key-1]->total_traded_volume ) { ?>
@@ -386,7 +391,9 @@ setlocale(LC_MONETARY,"en_IN.utf8");
                     <td>
                         <?php
                             $total_delivery_quantity = $total_delivery_quantity + $stock_detail_value->delivery_quantity; 
-                            echo money_format('%!.0n', $stock_detail_value->delivery_quantity); 
+                            echo indianNumberFormat($stock_detail_value->delivery_quantity); 
+
+                            
                         ?>
                         <?php if( $stock_detail_key!=0 and $stock_detail_value->delivery_quantity > $stock_detail[$stock_detail_key-1]->delivery_quantity ) { ?>
                         <i class="fa fa-arrow-up green-up-arr" data-toggle="tooltip" title="Delivery Quantity increases on <?php echo date('d-M-Y', strtotime($stock_detail_value->stock_date)); ?> compared to previous trading date (<?php echo date('d M Y', strtotime($stock_detail[$stock_detail_key-1]->stock_date)); ?>)"></i>
@@ -427,7 +434,7 @@ setlocale(LC_MONETARY,"en_IN.utf8");
                         <?php 
                         
                             $total_traded_value = $total_traded_value + $stock_detail_value->total_traded_value; 
-                            echo money_format('%!.0n', $stock_detail_value->total_traded_value);
+                            echo indianNumberFormat($stock_detail_value->total_traded_value);
                         
                             if( $stock_detail_key!=0 ){
                                 
@@ -447,11 +454,11 @@ setlocale(LC_MONETARY,"en_IN.utf8");
                     <td>
                         <?php 
                         $total_no_of_trades = $total_no_of_trades + $stock_detail_value->total_no_of_trades; 
-                        echo money_format('%!.0n', $stock_detail_value->total_no_of_trades); ?>
+                        echo indianNumberFormat($stock_detail_value->total_no_of_trades); ?>
                     </td>
                     <td><?php 
                     
-                        echo money_format('%!.0n', $stock_detail_value->volume_by_total_no_of_trade); 
+                        echo indianNumberFormat($stock_detail_value->volume_by_total_no_of_trade); 
                         
                         if( $stock_detail_key!=0 ){
                             
@@ -507,7 +514,7 @@ setlocale(LC_MONETARY,"en_IN.utf8");
                     <td>Average</td>
                     <td></td>
                     <td></td>
-                    <td><?php echo money_format("%n", $total_close / count($stock_detail)); ?></td>
+                    <td><?php echo indianNumberFormat($total_close / count($stock_detail)); ?></td>
                     <td><?php echo number_format( $total_vwap / count($stock_detail) , 2); ?></td>                    
                     <td></td>
                     <td></td>
@@ -519,7 +526,7 @@ setlocale(LC_MONETARY,"en_IN.utf8");
                     <td><?php echo number_format($total_traded_value / count($stock_detail) , 2); ?></td>
                     <td><?php echo number_format($total_no_of_trades / count($stock_detail) , 2); ?></td>
                     
-                    <td><?php echo number_format( ( $total_traded_volume/$total_no_of_trades ) , 2); ?></td>
+                    <td><?php echo ($total_no_of_trades != 0) ? number_format(($total_traded_volume / $total_no_of_trades), 2) : "Error: Division by zero!"; ?></td>
                     
                     <td><?php echo number_format( $total_money_flow / count($stock_detail) , 2); ?></td>
                     

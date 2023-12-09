@@ -283,3 +283,14 @@ function validateDate($date, $format = 'd-M-Y') {
     // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
     return $d && $d->format($format) === $date;
 }
+
+/**
+ * @author: ZAHIR
+ * Number in Indian Format, i.e display number in comma separeted
+ */
+function indianNumberFormat($value){
+
+    $fmt = new NumberFormatter('en_IN', NumberFormatter::DECIMAL);
+    echo $fmt->format($value);
+
+}
