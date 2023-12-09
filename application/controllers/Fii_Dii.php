@@ -2,6 +2,8 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+include_once (dirname(__FILE__) . "/Python_Controller.php");
+
 class Fii_Dii extends MX_Controller {
 
     public function totalInvestOftradingActivity(  ) {
@@ -83,7 +85,10 @@ class Fii_Dii extends MX_Controller {
         $url = 'https://www.nseindia.com/api/fiidiiTradeReact';
         $referer = 'https://www.nseindia.com/all-reports/historical-equities-fii-fpi-dii-trading-activity';
         
+        $Python_contr = new Python_Controller();
         $Nse_Contr = new Nse_Contr(); 
+
+        $Python_contr->executeCookieScript();
         
         $data_return_arr = $Nse_Contr->curlNse($url, $referer);
         
