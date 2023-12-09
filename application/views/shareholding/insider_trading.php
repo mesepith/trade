@@ -398,7 +398,7 @@
 
                         <tr>
                             <td><?php echo $insider_trading_value->company_symbol; ?></td>
-                            <td><?php echo money_format('%!.0n', $insider_trading_value->sec_val); ?></td>
+                            <td><?php echo indianNumberFormat($insider_trading_value->sec_val); ?></td>
                         </tr>
         <?php } ?>
 
@@ -484,17 +484,17 @@
                                 </td>
 
                                 <td><?php echo $insider_trading_value->sec_type; ?></td>
-                                <td><?php echo money_format('%!.0n', $insider_trading_value->sec_acq); ?></td>
-                                <td><?php echo money_format('%!.0n', $insider_trading_value->sec_val); ?></td>
+                                <td><?php echo indianNumberFormat($insider_trading_value->sec_acq); ?></td>
+                                <td><?php echo indianNumberFormat($insider_trading_value->sec_val); ?></td>
 
                                 <td><?php echo $insider_trading_value->tdp_transaction_type; ?></td>
                                 <td><?php echo $insider_trading_value->person_category; ?></td>
                                 <td><?php echo $insider_trading_value->acq_mode; ?></td>
 
-                                <td><?php echo money_format('%!.0n', $insider_trading_value->bef_acq_shares_no); ?></td>
+                                <td><?php echo indianNumberFormat($insider_trading_value->bef_acq_shares_no); ?></td>
                                 <td><?php echo $insider_trading_value->bef_acq_shares_per; ?></td>
 
-                                <td><?php echo money_format('%!.0n', $insider_trading_value->after_acq_shares_no); ?></td>
+                                <td><?php echo indianNumberFormat($insider_trading_value->after_acq_shares_no); ?></td>
                                 <td><?php echo $insider_trading_value->after_acq_shares_per; ?></td>
 
                                 <td><?php echo date('d M Y ', strtotime($insider_trading_value->acq_from_dt)); ?></td>
@@ -510,15 +510,15 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><?php echo money_format('%!.0n', $sum_total_security); ?></td>
-                                <td><?php echo money_format('%!.0n', $sum_total_security_value); ?></td>
+                                <td><?php echo indianNumberFormat($sum_total_security); ?></td>
+                                <td><?php echo indianNumberFormat($sum_total_security_value); ?></td>
                             </tr>
                             <tr>
                                 <td>Average Share Price</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><?php echo money_format('%!.0n', ($sum_total_security_value/$sum_total_security) ); ?></td>
+                                <td><?php echo indianNumberFormat(($sum_total_security_value/$sum_total_security) ); ?></td>
                             </tr>
                     </tbody>
                 </table>
