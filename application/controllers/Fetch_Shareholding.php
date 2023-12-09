@@ -4,13 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 include_once (dirname(__FILE__) . "/System_Notification_Controller.php");
 include_once (dirname(__FILE__) . "/Nse_Contr.php");
+include_once (dirname(__FILE__) . "/Python_Controller.php");
 include_once (dirname(__FILE__) . "/Send_Api_Contr.php");
 
 class Fetch_Shareholding extends MX_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('fetch_nse_cookies_model');
+        // $this->load->model('fetch_nse_cookies_model');
     }
 
     function fetchShareHoldingDataByCompany() {
@@ -353,7 +354,7 @@ class Fetch_Shareholding extends MX_Controller {
      */
 
     function insiderTrading($curl_check = false) {
-
+        
 //        echo $curl_check; exit;
 
         $url = 'https://www.nseindia.com/api/corporates-pit?';
@@ -362,14 +363,17 @@ class Fetch_Shareholding extends MX_Controller {
 //        $url = 'https://www.nseindia.com/api/corporates-pit?index=equities&from_date=22-04-2021&to_date=21-05-2021';
         $referer = 'https://www.nseindia.com/companies-listing/corporate-filings-insider-trading';
         
-        $data_return_arr = $this->curlCookieNSeExecute( $url, $referer, $curl_check );
-        
-        echo '<pre>';
-        print_r($data_return_arr);
+        // $data_return_arr = $this->curlCookieNSeExecute( $url, $referer, $curl_check );
 
 //        exit;
-//        $data_return_arr = $Nse_Contr->curlNse($url, $referer);
+        $Python_contr = new Python_Controller();
+        $Python_contr->executeCookieScript();
 
+        $Nse_Contr = new Nse_Contr();
+        $data_return_arr = $Nse_Contr->curlNse($url, $referer);
+
+        // echo '<pre>';
+        // print_r($data_return_arr); exit;
 
 
         if (empty($data_return_arr['data'])) {

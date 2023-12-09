@@ -79,10 +79,10 @@ if(ENVIRONMENT == 'production'){
 	$db_user_name = 'u797334786_zahir_stock';	
 	$db_pass = "kinaSell1$"; 
 }else if(ENVIRONMENT == 'testing'){
-	$db_host = 'localhost';	
-	$db_name = "u797334786_trade";
-	$db_user_name = 'u797334786_zahir_stock';
-	$db_pass = "kinaSell1$";
+	$db_host = '127.0.0.1';	
+	$db_name = "u797334786_staging_trade";
+	$db_user_name = 'u797334786_rajz_uat';
+	$db_pass = ">>6|WS5jL";
 }else if(ENVIRONMENT == 'development'){
 	$db_host = '127.0.0.1';	
 	$db_name = 'u797334786_staging_trade';
