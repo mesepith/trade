@@ -2,6 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+include_once (dirname(__FILE__) . "/Python_Controller.php");
 include_once (dirname(__FILE__) . "/Nse_Contr.php");
 include_once (dirname(__FILE__) . "/System_Notification_Controller.php");
 include_once (dirname(__FILE__) . "/Send_Api_Contr.php");
@@ -165,8 +166,6 @@ class Fetch_Controller extends MX_Controller {
         
         $this->load->model('Year_high_low_model');
         
-//        $high_or_low = 'high';
-        
         $is_inserted = $this->Year_high_low_model->checkTodaysDataAlreadyInserted($high_or_low);
         
         if( $is_inserted === 'inserted' ){ #Since data is already inserted, so exit it
@@ -198,8 +197,6 @@ class Fetch_Controller extends MX_Controller {
                 ]
             ])->getBody()->getContents()), true);
         
-//        echo '<pre>'; print_r($year_high_low_data); exit;
-        
         $api_date_time = strtotime($year_high_low_data['time']);
         $api_date = date('Y-m-d', $api_date_time);             
         $api_date_timestanmp = strtotime($api_date);
@@ -230,7 +227,6 @@ class Fetch_Controller extends MX_Controller {
                 $year_high_low_arr['company_symbol'] = trim($year_high_low_data_value['symbol']);
                 $year_high_low_arr['company_id'] = $this->Companies_model->getCompanyIdBySymbol(trim($year_high_low_data_value['symbol']));
                 
-//                $year_high_low_arr['pc_exists'] = $this->Put_call_model->checkCompanyExistInPCByIdAndSymbol($year_high_low_arr['company_id'], $year_high_low_arr['company_symbol']);
                 $year_high_low_arr['pc_exists'] = $Send_Api_Contr->checkCompanyExistInPCByIdAndSymbol($year_high_low_arr['company_id'], $year_high_low_arr['company_symbol']);
                 
                 $year_high_low_arr['new_high'] = trim(str_replace(",","",$year_high_low_data_value['value']));
@@ -249,7 +245,6 @@ class Fetch_Controller extends MX_Controller {
                 $year_high_low_arr['market_date'] = $api_date;
                 $year_high_low_arr["created_at"] = date("Y-m-d H:i:s");
 
-//                echo '<pre>'; print_r($year_high_low_arr);
 
                 $this->Year_high_low_model->insertYearHighApiData($year_high_low_arr );
 
@@ -259,7 +254,6 @@ class Fetch_Controller extends MX_Controller {
                 $year_high_low_arr['company_symbol'] = trim($year_high_low_data_value['symbol']);  
                 $year_high_low_arr['company_id'] = $this->Companies_model->getCompanyIdBySymbol(trim($year_high_low_data_value['symbol']));
                 
-//                $year_high_low_arr['pc_exists'] = $this->Put_call_model->checkCompanyExistInPCByIdAndSymbol($year_high_low_arr['company_id'], $year_high_low_arr['company_symbol']);
                 $year_high_low_arr['pc_exists'] = $Send_Api_Contr->checkCompanyExistInPCByIdAndSymbol($year_high_low_arr['company_id'], $year_high_low_arr['company_symbol']);
                 
                 $year_high_low_arr['new_low'] = trim(str_replace(",","",$year_high_low_data_value['value']));
@@ -277,8 +271,6 @@ class Fetch_Controller extends MX_Controller {
                 $year_high_low_arr['pChange'] = trim($year_high_low_data_value['pChange']);
                 $year_high_low_arr['market_date'] = $api_date;
                 $year_high_low_arr["created_at"] = date("Y-m-d H:i:s");
-                
-//                echo '<pre>'; print_r($year_high_low_arr);
                 
                 $this->Year_high_low_model->insertYearLowApiData($year_high_low_arr );
             }
@@ -304,7 +296,10 @@ class Fetch_Controller extends MX_Controller {
             exit;
         }
         
-        $Nse_Contr = new Nse_Contr();                                     
+        $Python_contr = new Python_Controller();
+        $Nse_Contr = new Nse_Contr();   
+        
+        $Python_contr->executeCookieScript();
         
         $check_open_and_closing_price = $Nse_Contr->checkMarketIsOpenedToday();
         
