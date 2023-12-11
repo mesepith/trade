@@ -153,7 +153,7 @@ class Fetch_Bulk_Block extends MX_Controller {
 
         $is_inserted = $Send_Api_Contr->checkTodaysBulkBlockInserted($exchange, $bulk_or_block);
 
-        echo $bulk_or_block . '  is_inserted ' . $is_inserted; exit;
+        // echo $bulk_or_block . '  is_inserted ' . $is_inserted; exit;
         
         if( $is_inserted > 0 ){ echo $bulk_or_block . ' of ' . $exchange . ' is already inserted '; return; }
 
