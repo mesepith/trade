@@ -81,7 +81,7 @@ class Stock_Fetch_Contr extends MX_Controller {
         }
 
         /** If market is running then we need to find last crawled company_id */
-        if( $check_open_and_closing_price == 0 ){ exit; //for now we are not storing live data }
+        if( $check_open_and_closing_price == 0 ){ exit; } //for now we are not storing live data }
                
         $System_Notification_contr = new System_Notification_Controller();
         
