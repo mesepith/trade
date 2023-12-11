@@ -164,7 +164,7 @@ class Fetch_Bulk_Block extends MX_Controller {
 
         $data_return_arr = $Nse_Contr->curlNse($url, $referer);
 
-        
+        echo '$url : ' . $url . '<br/>';
 
 
         if( !empty($data_return_arr) && !empty($data_return_arr['data']) && !empty($data_return_arr['data']) ){
@@ -209,7 +209,7 @@ class Fetch_Bulk_Block extends MX_Controller {
         $currentDate = date('d-m-Y');
         $dateOneWeekBefore = date('d-m-Y', strtotime('-1 week', strtotime($currentDate)));
 
-        $url = 'https://www.nseindia.com/api/historical/block-deals?from='.$dateOneWeekBefore.'&to=' . $currentDate;
+        $url = 'https://www.nseindia.com/api/historical/block-deals?from='.$currentDate.'&to=' . $currentDate;
         $referer = 'https://www.nseindia.com/report-detail/display-bulk-and-block-deals';
 
         $this->crawlBulkBlock($url, $referer, 'block', 'nse');
@@ -220,7 +220,7 @@ class Fetch_Bulk_Block extends MX_Controller {
         $currentDate = date('d-m-Y');
         $dateOneWeekBefore = date('d-m-Y', strtotime('-1 week', strtotime($currentDate)));
         
-        $url = 'https://www.nseindia.com/api/historical/bulk-deals?from='.$dateOneWeekBefore.'&to=' . $currentDate;
+        $url = 'https://www.nseindia.com/api/historical/bulk-deals?from='.$currentDate.'&to=' . $currentDate;
         $referer = 'https://www.nseindia.com/report-detail/display-bulk-and-block-deals';
 
         $this->crawlBulkBlock($url, $referer, 'bulk', 'nse');
