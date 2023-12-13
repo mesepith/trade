@@ -358,6 +358,10 @@
                     
                     <th class="is_on_filter_<?php echo $make_filter_sort_color; ?>">Total Traded Volume on <?php echo $stock_date_list_arr_value; ?></th>
                     <?php }?>
+
+                    <?php for($i=1; $i<$most_occured_no; $i++){?>
+                    <th><?php echo 'Is Volume on ' . $stock_date_list_arr[$i] . ' > '. $stock_date_list_arr[$i+1] . ' ? '; ?></th>
+                    <?php } ?>
                     
                     <?php foreach($stock_date_list_arr AS $stock_date_list_arr_value){                     
                         
@@ -429,17 +433,23 @@
 
                         <?php } ?>
 
-        <?php for ($i = 1; $i < ($most_occured_no+1); $i++) { 
-            
-            $make_filter_sort_color='';
-            if( (!empty($filter['total_traded_volume'])  && !empty($filter['sort_date']) && $filter['sort_date'] == $company_arr_value[$i]['stock_date'])  || ( $total_traded_volume_date == $company_arr_value[$i]['stock_date'] ) ){
-                $make_filter_sort_color = 'yes';
-            }
-        ?>
+                        <?php for ($i = 1; $i < ($most_occured_no+1); $i++) { 
+                            
+                            $make_filter_sort_color='';
+                            if( (!empty($filter['total_traded_volume'])  && !empty($filter['sort_date']) && $filter['sort_date'] == $company_arr_value[$i]['stock_date'])  || ( $total_traded_volume_date == $company_arr_value[$i]['stock_date'] ) ){
+                                $make_filter_sort_color = 'yes';
+                            }
+                        ?>
 
-                                <td class="is_on_filter_<?php echo $make_filter_sort_color; ?>"><span href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="<?php echo $company_arr_value[$i]['stock_date']; ?>"><?php echo indianNumberFormat($company_arr_value[$i]['total_traded_volume']); ?></span></td>
+                            <td class="is_on_filter_<?php echo $make_filter_sort_color; ?>"><span href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="<?php echo $company_arr_value[$i]['stock_date']; ?>"><?php echo indianNumberFormat($company_arr_value[$i]['total_traded_volume']); ?></span></td>
 
-        <?php } ?> 
+                        <?php } ?> 
+
+                        <?php for ($i = 1; $i < $most_occured_no; $i++) { ?>
+
+                        <td><span class="<?php echo $company_arr_value[$i]['is_total_traded_volume_increase']; ?>" href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="<?php echo 'On ' . $company_arr_value[$i]['stock_date'] . ' of ' . $company_arr_key; ?>"><?php echo $company_arr_value[$i]['is_total_traded_volume_increase']; ?></span></td>
+
+                        <?php } ?>
 
         <?php for ($i = 1; $i < ($most_occured_no+1); $i++) {
             

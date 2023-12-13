@@ -69,6 +69,7 @@ class Home extends MX_Controller {
 
                         $is_price_increase = ( $company_arr[$company_list_value->symbol][$count]['close_price'] > $company_arr[$company_list_value->symbol][$count+1]['close_price']) ? 'yes' : 'no';
                         $is_delivery_to_traded_quantity_increase = ( $company_arr[$company_list_value->symbol][$count]['delivery_to_traded_quantity'] > $company_arr[$company_list_value->symbol][$count+1]['delivery_to_traded_quantity']) ? 'yes' : 'no';
+                        $is_total_traded_volume_increase = ( $company_arr[$company_list_value->symbol][$count]['total_traded_volume'] > $company_arr[$company_list_value->symbol][$count+1]['total_traded_volume']) ? 'yes' : 'no';
 
                     }
                     
@@ -80,6 +81,7 @@ class Home extends MX_Controller {
 
                     $company_arr[$company_list_value->symbol][$count]['is_price_increase'] = $is_price_increase;
                     $company_arr[$company_list_value->symbol][$count]['is_delivery_to_traded_quantity_increase'] = $is_delivery_to_traded_quantity_increase;
+                    $company_arr[$company_list_value->symbol][$count]['is_total_traded_volume_increase'] = $is_total_traded_volume_increase;
 
                     $count--;
 //                    break;
