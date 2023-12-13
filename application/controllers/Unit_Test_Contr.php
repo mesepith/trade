@@ -77,6 +77,11 @@ class Unit_Test_Contr extends MX_Controller {
         }
 
     }
+
+    function emailTest(){
+
+        $this->sendTestFailEmail("Email Subject Test", 'Body of the Email by Zahir');
+    }
     
     /*
      * @author: ZAHIR
@@ -86,11 +91,11 @@ class Unit_Test_Contr extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = $subject;                
         $mail_data['message']= $body;
-        send_mailz($mail_data);
+        echo send_mailz($mail_data);
         
     }
 
