@@ -57,7 +57,7 @@ class Analysis_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
+        $mail_data['from']= 'developer@zybloom.com';
 //        $mail_data['to']='zahir.alam@ahealz.com';               
         $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Best Stock By Home Page';                
