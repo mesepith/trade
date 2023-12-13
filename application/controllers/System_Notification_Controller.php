@@ -46,8 +46,8 @@ class System_Notification_Controller extends MX_Controller {
         $link = base_url(). 'System_Notification_Controller/checkDiskSpace';
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Disk space size is minimum of scaleway server 1';                
         $mail_data['message']= 'Disk space percentage is ' . $data['total_Uses_in_perchantage'] . ' , <br/>' . $link;
         send_mailz($mail_data);
@@ -136,8 +136,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'NSE Forbidden 403';   
         $mail_data['message']= $message;
         send_mailz($mail_data);
@@ -162,8 +162,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Mysql Connection Fail';   
         $mail_data['message']= $message;
         send_mailz($mail_data);
@@ -176,8 +176,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Fail while sending stock for insert through Api : ' . $company_symbol;   
         $mail_data['message']= $this->load->view('notify/emails/stock_fail_insert', $email_data, true);
         send_mailz($mail_data);
@@ -190,8 +190,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Fail while crawling: ' . $company_symbol . ' - ' . SERVER_NAME;   
 
         $mail_data['message']= $this->load->view('notify/emails/stock_fail_crawl', $email_data, true);
@@ -205,8 +205,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Stock is set to inactive: ' . $company_symbol;   
         $mail_data['message']= $msg;
         send_mailz($mail_data);
@@ -219,8 +219,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Fail Put Call crawling: ' . $company_symbol . ' - ' . SERVER_NAME;   
 
         $mail_data['message']= $this->load->view('notify/emails/option_fail_crawl', $email_data, true);
@@ -232,8 +232,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';     
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';     
         $msg = "<a href='https://www.nseindia.com/get-quotes/equity?symbol=".urlencode($company_symbol)."'>Check Here</a>";
         $mail_data['subject'] = 'Empty Put Call Record: ' . $company_symbol . ' - ' . SERVER_NAME;   
 
@@ -252,8 +252,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Option Chain Company set to inactive: ' . $company_symbol;   
         $mail_data['message']= $msg;
         send_mailz($mail_data);
@@ -266,8 +266,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Market Status Not recieved from NSE';   
         $mail_data['message']= $msg;
         send_mailz($mail_data);
@@ -280,8 +280,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Fail Read Companay List(CSV from NSE';   
         $mail_data['message']= $msg;
         send_mailz($mail_data);
@@ -292,8 +292,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'In Active company is added in NSE(CSV) : ' . $company_symbol ;  
         
         $msg = "<a href='https://www.nseindia.com/get-quotes/equity?symbol=".urlencode($company_symbol)."'>Check Here To Check in NSE</a>";
@@ -310,8 +310,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Fail Read Lot Size of market - ' . $derivativeType;   
         $mail_data['message']= $msg;
         send_mailz($mail_data);
@@ -323,8 +323,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Lot Size value is different of market - ' . $derivativeType . ' - ' . $index_or_company_symbol;   
         $mail_data['message']= $msg;
         send_mailz($mail_data);
@@ -336,8 +336,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'No Lot SIze Found - ' . $lot_arr['company_symbol'] . ' - On Processing Put Call Data';   
         $mail_data['message']= $msg;
         send_mailz($mail_data);
@@ -350,8 +350,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Fail Read '.$derivative_type.' Companay List(NSE)';   
         $mail_data['message']= $msg;
         send_mailz($mail_data);
@@ -362,8 +362,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'In Active company is added in Future(NSE) : ' . $company_symbol ;  
         
         $msg = "<a href='https://www.nseindia.com/get-quotes/equity?symbol=".urlencode($company_symbol)."'>Check Here To Check in NSE</a>";
@@ -377,8 +377,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'In Active company is added in Option(NSE) : ' . $company_symbol ;  
         
         $msg = "<a href='https://www.nseindia.com/get-quotes/equity?symbol=".urlencode($company_symbol)."'>Check Here To Check in NSE</a>";
@@ -394,8 +394,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Fail - Read volatility for daily and annually';   
         $mail_data['message']= $msg;
         send_mailz($mail_data);
@@ -408,8 +408,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Fail - Read Participant wise Open Interest - ' . $market_date;   
         $mail_data['message']= $msg;
         send_mailz($mail_data);
@@ -422,8 +422,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Fail - Read Participant wise Volume - ' . $market_date;   
         $mail_data['message']= $msg;
         send_mailz($mail_data);
@@ -436,8 +436,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Fail - Read Fii Derivative Data from Nse - ' . $market_date;   
         $mail_data['message']= $msg;
         send_mailz($mail_data);
@@ -450,8 +450,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Concert Share holder Found - ' . $company_symbol . ' - ' . $market_date;   
         $mail_data['message']= $msg;
         send_mailz($mail_data);
@@ -465,8 +465,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Fail Future crawling: ' . $company_symbol . ' - ' . SERVER_NAME;   
 
         $mail_data['message']= $this->load->view('notify/emails/future_fail_crawl', $email_data, true);
@@ -485,8 +485,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Future Company set to inactive: ' . $company_symbol;   
         $mail_data['message']= $msg;
         send_mailz($mail_data);
@@ -500,8 +500,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Fail - Read Nifty Top 10 Stock - ' . $market_date;   
         $mail_data['message']= $msg;
         send_mailz($mail_data);
@@ -514,8 +514,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = 'Fail - Read NSE Top 10 Clearing Members Volume and turnover - ' . $market_date;   
         $mail_data['message']= $msg;
         send_mailz($mail_data);
@@ -529,8 +529,8 @@ class System_Notification_Controller extends MX_Controller {
         
         $this->load->helper('smtp_helper');
         $mail_data['name']= 'Zahir ';
-        $mail_data['from']= 'care@ampstart.co';
-        $mail_data['to']='zahir.alam@ahealz.com';               
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
         $mail_data['subject'] = $subject . ' - ' . $market_date;   
         $mail_data['message']= $msg;
         send_mailz($mail_data);
