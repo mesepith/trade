@@ -437,7 +437,7 @@
             }
         ?>
 
-                                <td class="is_on_filter_<?php echo $make_filter_sort_color; ?>"><span href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="<?php echo $company_arr_value[$i]['stock_date']; ?>"><?php echo money_format('%!.0n',$company_arr_value[$i]['total_traded_volume']); ?></span></td>
+                                <td class="is_on_filter_<?php echo $make_filter_sort_color; ?>"><span href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="<?php echo $company_arr_value[$i]['stock_date']; ?>"><?php echo indianNumberFormat($company_arr_value[$i]['total_traded_volume']); ?></span></td>
 
         <?php } ?> 
 
@@ -450,7 +450,7 @@
             
         ?>
 
-                                <td class="is_on_filter_<?php echo $make_filter_sort_color; ?>"><span href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="<?php echo $company_arr_value[$i]['stock_date']; ?>"><?php echo money_format('%!.0n',$company_arr_value[$i]['delivery_quantity']); ?></span></td>
+                                <td class="is_on_filter_<?php echo $make_filter_sort_color; ?>"><span href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="<?php echo $company_arr_value[$i]['stock_date']; ?>"><?php echo indianNumberFormat($company_arr_value[$i]['delivery_quantity']); ?></span></td>
 
         <?php } ?> 
 

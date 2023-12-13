@@ -1,4 +1,5 @@
 <?php setlocale(LC_MONETARY,"en_IN.utf8"); ?>
+<?php $this->load->helper('function_helper'); ?>
 <style>
     /* Fixed Table Header Start*/
     thead tr:nth-child(1) th{
@@ -323,20 +324,20 @@
                     <td>Average</td>
                     <td></td>
                     <td></td>
-                    <td><?php echo money_format("%n", $total_fii_net / count($total_investment_data_arr)); ?></td>
+                    <td><?php echo indianNumberFormat($total_fii_net / count($total_investment_data_arr)); ?></td>
                     <td></td>
                     <td></td>
-                    <td><?php echo money_format("%n", $total_dii_net / count($total_investment_data_arr)); ?></td>
+                    <td><?php echo indianNumberFormat($total_dii_net / count($total_investment_data_arr)); ?></td>
                     
                 </tr>
                 <tr class="avg_total_data">
                     <td>Total</td>
                     <td></td>
                     <td></td>
-                    <td><?php echo money_format("%n", $total_fii_net ); ?></td>
+                    <td><?php echo indianNumberFormat($total_fii_net ); ?></td>
                     <td></td>
                     <td></td>
-                    <td><?php echo money_format("%n", $total_dii_net ); ?></td>
+                    <td><?php echo indianNumberFormat($total_dii_net ); ?></td>
                     
                 </tr>
                 
