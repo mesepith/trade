@@ -123,9 +123,7 @@ class Fii_Dii extends MX_Controller {
      * DESC: get sectorwise investment data of fpi/fpi from NSDL
      */
     
-    function getNsdlSectoreInvestDataofFii(){
-        
-        $this->load->model('Fii_dii_model');
+     function getNsdlSectoreInvestDataofFii(){
         
         $insert_data = array();
         
@@ -135,7 +133,8 @@ class Fii_Dii extends MX_Controller {
         $format_date = str_replace(',', '-', $date);
         $format_date = str_replace(' ', '-', $format_date);
         
-        $insert_data['report_date'] = date('Y-m-d', strtotime($date));
+        $report_date = date('Y-m-d', strtotime($date));
+        $insert_data['report_date'] = $report_date;
 //        $insert_data['report_date'] = '2019-08-15';
         
 //        echo json_encode($post_data['json_data']); 
@@ -159,29 +158,58 @@ class Fii_Dii extends MX_Controller {
                 
                 continue;
             }
+
+            /** 1st part of Net AUC  Start  */
             
-            $insert_data['sector_name'] = trim($sectors_investment_data[1]);
-            $insert_data['equity'] = ( !empty($sectors_investment_data[18]) ) ? trim($sectors_investment_data[18]) : 0;
-            $insert_data['debt'] = (!empty($sectors_investment_data[19])) ? trim($sectors_investment_data[19]) : 0;
-            $insert_data['hybrid'] = (!empty($sectors_investment_data[20])) ? trim($sectors_investment_data[20]) : 0;
-            $insert_data['total'] = (!empty($sectors_investment_data[21])) ? trim($sectors_investment_data[21]) : 0;
-            $insert_data['source'] = 'nsdl';
+            $this->nsdlFiiSectoreInsert($report_date, $data['data'][0][2], $sectors_investment_data[1], $sectors_investment_data[2], $sectors_investment_data[3], $sectors_investment_data[4], $sectors_investment_data[5], $sectors_investment_data[6] );        
+            /** 1st part of Net AUC  End    */
             
-//            echo $sectore_name . '- ' . $equity . ' - ' . $debt . ' - ' . $hybrid . ' - ' . $total . ' - ' . $db_date;
+            /** 1st part of Net Investment  Start  */
             
-            $return = $this->Fii_dii_model->insertNsdlSectoreInvestDataofFii( $insert_data );
-            
+            $this->nsdlFiiSectoreInsert($report_date, $data['data'][0][12], $sectors_investment_data[1], $sectors_investment_data[12], $sectors_investment_data[13], $sectors_investment_data[14], $sectors_investment_data[15], $sectors_investment_data[16] ); 
+
+            /** 1st part of Net Investment  End  */
+
+            /** 2nd part of Net Investment  Start  */
+            $this->nsdlFiiSectoreInsert($report_date, $data['data'][0][22], $sectors_investment_data[1], $sectors_investment_data[22], $sectors_investment_data[23], $sectors_investment_data[24], $sectors_investment_data[25], $sectors_investment_data[26] );
+            /** 2nd part of Net Investment  End  */
+
+            /** 2nd part of Net AUC  Start    */
+            $this->nsdlFiiSectoreInsert($report_date, $data['data'][0][32], $sectors_investment_data[1], $sectors_investment_data[32], $sectors_investment_data[33], $sectors_investment_data[34], $sectors_investment_data[35], $sectors_investment_data[36] );
+            /** 2nd part of Net AUC  End    */
             
         }
+        //exit;
         
-        if( $return> 0 ){
-            
-            $filename = PROJECT_DOCUMENT_ROOT . '/assets/fii-dii/nsdl-sector-invest/' . $format_date . '.json';
-            file_put_contents($filename, $post_data['json_data']);
-            
-        }
-        echo $return; exit;
+    }
+
+    /**
+     * Store nsdl fii sectore
+     */
+    function nsdlFiiSectoreInsert($report_date, $investment_type, $sector_name, $equity, $debt, $debt_vrr, $hybrid, $total){
+
+        $this->load->model('Fii_dii_model');
+
+        $insert_data = array();
+
+        $insert_data['report_date'] = $report_date;
+        $insert_data['investment_type'] = trim($investment_type);
+        $insert_data['sector_name'] = trim($sector_name);
+        $insert_data['equity'] = ( !empty($equity) ) ? trim($equity) : 0;
+        $insert_data['debt'] = (!empty($debt)) ? trim($debt) : 0;
+        $insert_data['debt_vrr'] = (!empty($debt_vrr)) ? trim($debt_vrr) : 0;
+        $insert_data['hybrid'] = (!empty($hybrid)) ? trim($hybrid) : 0;
+        $insert_data['total'] = (!empty($total)) ? trim($total) : 0;
+
+        $return = $this->Fii_dii_model->insertNsdlSectoreInvestDataofFii( $insert_data );
         
+        // if( $return> 0 ){
+            
+        //     $filename = PROJECT_DOCUMENT_ROOT . '/assets/fii-dii/nsdl-sector-invest/' . $format_date . '.json';
+        //     file_put_contents($filename, $post_data['json_data']);
+            
+        // }
+        // echo $return;
     }
     
     /*
