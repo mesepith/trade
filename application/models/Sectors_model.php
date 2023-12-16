@@ -73,6 +73,7 @@ class Sectors_model extends CI_Model {
     function insertSectorsData( $sectors_data_arr ){
         
         $sectors_data_arr["created_at"] = date("Y-m-d H:i:s");
+        $sectors_data_arr["updated_at"] = date("Y-m-d H:i:s");
         
         $this->load->model('Db_error_log');
         

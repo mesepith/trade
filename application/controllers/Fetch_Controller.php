@@ -188,9 +188,64 @@ class Fetch_Controller extends MX_Controller {
      */
     function extractSectorIndices2023(){
 
+        $Python_contr = new Python_Controller();
+        $Nse_Contr = new Nse_Contr();
+        $Python_contr->executeCookieScript();
+
+        $this->load->model('Sectors_model');
         $sectors_list = $this->Sectors_model->listAllSectors();
 
-        echo '<pre>'; print_r($sectors_list); exit;
+        foreach( $sectors_list AS $each_sector ){
+
+            $index_name = urlencode($each_sector->index_name);
+
+            $url = 'https://www.nseindia.com/api/equity-stockIndices?index=' . $index_name;
+            $referer = 'https://www.nseindia.com/market-data/live-equity-market?symbol='. $index_name;
+
+            $each_indices_result  = $Nse_Contr->curlNse($url, $referer);
+
+            // echo '<pre>'; print_r($each_indices_result['data']); exit;
+
+            $sectors_data_arr = array();
+
+            $sectors_data_arr['sectors_id'] = $each_sector->id;
+            $sectors_data_arr['index_name'] = $each_sector->index_name;
+
+            if( !empty($each_indices_result) && !empty($each_indices_result['data']) && !empty($each_indices_result['data'][0]) ){
+
+
+                $sectors_data_arr['declines'] = $each_indices_result['advance']['declines'];
+                $sectors_data_arr['advances'] = $each_indices_result['advance']['advances'];
+                $sectors_data_arr['unchanged'] = $each_indices_result['advance']['unchanged'];
+
+                $sectors_data_arr['trade_volume_sum'] = $each_indices_result['data'][0]['totalTradedVolume'];
+                $sectors_data_arr['trade_value_sum'] = $each_indices_result['data'][0]['totalTradedValue']; //New Column
+
+                $sectors_data_arr['open_price'] = $each_indices_result['data'][0]['open'];
+                $sectors_data_arr['high_price'] = $each_indices_result['data'][0]['dayHigh'];
+                $sectors_data_arr['low_price'] = $each_indices_result['data'][0]['dayLow'];
+
+                $sectors_data_arr['ltp'] = $each_indices_result['data'][0]['lastPrice'];
+
+                $sectors_data_arr['change'] = $each_indices_result['data'][0]['change'];
+                $sectors_data_arr['change_in_percent'] = $each_indices_result['data'][0]['pChange'];
+                $sectors_data_arr['year_change_in_percent'] = $each_indices_result['data'][0]['perChange365d'];
+                $sectors_data_arr['month_change_in_percent'] = $each_indices_result['data'][0]['perChange30d'];
+
+                $sectors_data_arr['year_high_price'] = $each_indices_result['data'][0]['yearHigh'];
+                $sectors_data_arr['year_low_price'] = $each_indices_result['data'][0]['yearLow'];
+
+                $stock_timestamp = strtotime($each_indices_result['timestamp']);  
+                $sectors_data_arr['stock_date_time'] = date('Y-m-d H:i:s', $stock_timestamp);   
+                $sectors_data_arr['stock_date'] = date('Y-m-d', $stock_timestamp);  
+                $sectors_data_arr['stock_time'] = date('H:i:s', $stock_timestamp);
+
+            }
+            $this->Sectors_model->insertSectorsData( $sectors_data_arr );
+
+            echo '<pre>'; print_r($sectors_data_arr); 
+            // exit;
+        }
     }
     
     function extractSectorIndices2023Dup(){
