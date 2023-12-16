@@ -199,20 +199,26 @@ class Fetch_Controller extends MX_Controller {
 
             $index_name = urlencode($each_sector->index_name);
 
+            // if($each_sector->index_name !='INDIA VIX'){
+
+            //     continue;
+            // }
+
+            // echo '$index_name : ' . $index_name . '<br/><br/>';
+
             $url = 'https://www.nseindia.com/api/equity-stockIndices?index=' . $index_name;
             $referer = 'https://www.nseindia.com/market-data/live-equity-market?symbol='. $index_name;
 
             $each_indices_result  = $Nse_Contr->curlNse($url, $referer);
 
-            // echo '<pre>'; print_r($each_indices_result['data']); exit;
-
-            $sectors_data_arr = array();
-
-            $sectors_data_arr['sectors_id'] = $each_sector->id;
-            $sectors_data_arr['index_name'] = $each_sector->index_name;
+            // echo '<pre>'; print_r($each_indices_result); exit;
 
             if( !empty($each_indices_result) && !empty($each_indices_result['data']) && !empty($each_indices_result['data'][0]) ){
 
+                $sectors_data_arr = array();
+
+                $sectors_data_arr['sectors_id'] = $each_sector->id;
+                $sectors_data_arr['index_name'] = $each_sector->index_name;
 
                 $sectors_data_arr['declines'] = $each_indices_result['advance']['declines'];
                 $sectors_data_arr['advances'] = $each_indices_result['advance']['advances'];
@@ -240,10 +246,12 @@ class Fetch_Controller extends MX_Controller {
                 $sectors_data_arr['stock_date'] = date('Y-m-d', $stock_timestamp);  
                 $sectors_data_arr['stock_time'] = date('H:i:s', $stock_timestamp);
 
-            }
-            $this->Sectors_model->insertSectorsData( $sectors_data_arr );
+                $this->Sectors_model->insertSectorsData( $sectors_data_arr );
 
-            echo '<pre>'; print_r($sectors_data_arr); 
+                echo '<pre>'; print_r($sectors_data_arr); 
+
+            }
+            
             // exit;
         }
     }
