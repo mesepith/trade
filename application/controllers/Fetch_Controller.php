@@ -149,7 +149,92 @@ class Fetch_Controller extends MX_Controller {
         print_r($sectors_data_arr);
         
     }
+
+    /**
+     * Extract indices list availbale on nse
+     */
+
+     function extractNseIndicesName2023(){
+
+        $Python_contr = new Python_Controller();
+        $Nse_Contr = new Nse_Contr();
+        $Python_contr->executeCookieScript();
+
+        $this->load->model('Sectors_model');
+
+        $url = 'https://www.nseindia.com/api/allIndices';
+        
+        $referer = 'https://www.nseindia.com/market-data/live-market-indices';
+
+        $all_indices  = $Nse_Contr->curlNse($url, $referer);
+
+        $index_arr = array();
+
+        if(!empty($all_indices['data'])){
+
+            foreach($all_indices['data'] AS $each_indices){
+                
+                $index_arr['name'] = $each_indices['index'];
+                $index_arr['index_name'] = $each_indices['indexSymbol'];
+
+                $this->Sectors_model->insertSectorsIndicesName( $index_arr );
+            }
+             
+        }
+     }
     
+    /**
+     * Extract Sector Indices
+     */
+    function extractSectorIndices2023(){
+
+        $sectors_list = $this->Sectors_model->listAllSectors();
+
+        echo '<pre>'; print_r($sectors_list); exit;
+    }
+    
+    function extractSectorIndices2023Dup(){
+
+        $Python_contr = new Python_Controller();
+        $Nse_Contr = new Nse_Contr();
+        $Python_contr->executeCookieScript();
+
+        $index_name = urlencode('NIFTY 50');
+        $url = 'https://www.nseindia.com/api/equity-stockIndices?index=' . $index_name;
+        // $url = 'https://www.nseindia.com/api/allIndices';
+        
+        $referer = 'https://www.nseindia.com/market-data/live-equity-market?symbol='. $index_name;
+        // $referer = 'https://www.nseindia.com/market-data/live-market-indices';
+        
+        $all_indices  = $Nse_Contr->curlNse($url, $referer);
+
+        echo '<pre>'; print_r($all_indices); exit;
+
+        $sectors_data_arr = array();
+        if(!empty($all_indices['data'])){
+
+            foreach($all_indices['data'] AS $each_indices){
+
+                echo '<pre>'; print_r($each_indices); 
+
+                $sectors_data_arr['index_name'] = $each_indices['index'];
+
+                $sectors_data_arr['ltp'] = $each_indices['last'];
+
+                $sectors_data_arr['change'] = $each_indices['variation'];
+                $sectors_data_arr['change_in_percent'] = $each_indices['percentChange'];
+                $sectors_data_arr['year_change_in_percent'] = $each_indices['perChange365d'];
+                $sectors_data_arr['month_change_in_percent'] = $each_indices['perChange30d'];
+
+                //$sectors_data_arr['trade_volume_sum'] = str_replace(",","",$sectors_data['trdVolumesum']);
+
+                $sectors_data_arr['declines'] = $each_indices['declines'];
+                $sectors_data_arr['advances'] = $each_indices['advances'];
+                $sectors_data_arr['unchanged'] = $each_indices['unchanged'];
+            }
+        }
+    }
+
     /*
      * OBSOLETE
      * OLD NSE Website

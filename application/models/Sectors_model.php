@@ -234,4 +234,27 @@ class Sectors_model extends CI_Model {
             return false;
         }
     }
+
+    /**
+     * Insert Sectore Indices Name
+     */
+
+    function insertSectorsIndicesName($index_arr){
+        $index_arr["created_at"] = date("Y-m-d H:i:s");
+        $index_arr["updated_at"] = date("Y-m-d H:i:s");
+    
+        // Check if the record already exists
+        $this->db->where('name', $index_arr['name']);
+        $this->db->where('index_name', $index_arr['index_name']);
+        $query = $this->db->get('sectors');
+    
+        if ($query->num_rows() > 0) {
+            // Record exists, update it or do nothing
+        } else {
+            // Record does not exist, insert new record
+            $this->db->insert('sectors', $index_arr);
+            $insert_id = $this->db->insert_id();
+        }
+    }
+    
 }
