@@ -83,10 +83,6 @@ class Fetch_Controller extends MX_Controller {
         
         $sectors_list = $this->Sectors_model->listAllLiveSectors();
         
-//        echo 'sl : ';
-//        echo '<pre>';
-//        print_r($sectors_list);
-        
         $sectors_data_log_id = 0;
         
         $market_running = 1;
@@ -330,8 +326,6 @@ class Fetch_Controller extends MX_Controller {
                 
         $year_high_low_data  = $Nse_Contr->curlNse($url, $referer); 
         
-//        echo '<pre>'; print_r($year_high_low_data); exit;
-        
         if( !empty($year_high_low_data['dataLtpGreater20']) && !empty($year_high_low_data['dataLtpLess20']) ){
             
             $year_high_low_data['data'] = (array_merge($year_high_low_data['dataLtpGreater20'],$year_high_low_data['dataLtpLess20']));
@@ -376,7 +370,6 @@ class Fetch_Controller extends MX_Controller {
         $year_high_low_log_id = $this->Year_high_low_model->insertYearHighLowApiDataInLog($year_high_low_data, $high_or_low, $api_date);
         
         $this->load->model('Companies_model');
-//        $this->load->model('Put_call_model');
         
         $year_high_low_arr = array();
         
@@ -388,7 +381,6 @@ class Fetch_Controller extends MX_Controller {
                 $year_high_low_arr['company_symbol'] = trim($year_high_low_data_value['symbol']);
                 $year_high_low_arr['company_id'] = $this->Companies_model->getCompanyIdBySymbol(trim($year_high_low_data_value['symbol']));
                 
-//                $year_high_low_arr['pc_exists'] = $this->Put_call_model->checkCompanyExistInPCByIdAndSymbol($year_high_low_arr['company_id'], $year_high_low_arr['company_symbol']);
                 $year_high_low_arr['pc_exists'] = $Send_Api_Contr->checkCompanyExistInPCByIdAndSymbol($year_high_low_arr['company_id'], $year_high_low_arr['company_symbol']);
                 
                 $year_high_low_arr['new_high'] = trim(str_replace(",","",$year_high_low_data_value['new52WHL']));
@@ -414,7 +406,6 @@ class Fetch_Controller extends MX_Controller {
                 $year_high_low_arr['company_symbol'] = trim($year_high_low_data_value['symbol']);  
                 $year_high_low_arr['company_id'] = $this->Companies_model->getCompanyIdBySymbol(trim($year_high_low_data_value['symbol']));
                 
-//                $year_high_low_arr['pc_exists'] = $this->Put_call_model->checkCompanyExistInPCByIdAndSymbol($year_high_low_arr['company_id'], $year_high_low_arr['company_symbol']);
                 $year_high_low_arr['pc_exists'] = $Send_Api_Contr->checkCompanyExistInPCByIdAndSymbol($year_high_low_arr['company_id'], $year_high_low_arr['company_symbol']);
                 
                 $year_high_low_arr['new_low'] = trim(str_replace(",","",$year_high_low_data_value['new52WHL']));
@@ -510,7 +501,6 @@ class Fetch_Controller extends MX_Controller {
                         $lot_arr['company_symbol'] = $index_or_company_symbol;
                         $lot_arr['size'] = trim($lot_csv_arr[$i]);
                         $lot_arr['month'] = date('m', strtotime($month_year_arr[$i]['month'] ));
-//                        $lot_arr['year'] = date('y', strtotime($month_year_arr[$i]['year'] ));
                         $lot_arr['year'] = $month_year_arr[$i]['year'];
                         
                         $lot_arr["created_at"] = date("Y-m-d H:i:s");
@@ -521,8 +511,6 @@ class Fetch_Controller extends MX_Controller {
                         
                     }
                 }
-                
-//                echo '<pre>'; print_r($lot_csv_arr);
                 
             }
             
@@ -637,10 +625,6 @@ class Fetch_Controller extends MX_Controller {
                     )
                 )
             );
-//            17022020
-//            echo date('dmY'); exit;
-            
-//            $url = "https://www1.nseindia.com/archives/nsccl/volt/CMVOLT_14022020.CSV";
             $url = "https://www1.nseindia.com/archives/nsccl/volt/CMVOLT_".date('dmY').".CSV";            
             
             $data = file_get_contents($url, false, $context);
@@ -663,8 +647,6 @@ class Fetch_Controller extends MX_Controller {
                 $date_raw_csv_timestamp = strtotime(trim($date_raw_csv));
                 $date_csv = date('Y-m-d', $date_raw_csv_timestamp);
                
-//                if( $date_csv != date('Y-m-d') ){ continue; }
-               
                 $index_or_company_symbol = trim($each_row_arr[1]);
 
                 $company_id = $Send_Api_Contr->getCompanyIdAndIndexIdBySymbol($index_or_company_symbol);
@@ -684,7 +666,6 @@ class Fetch_Controller extends MX_Controller {
                 $volatility_arr['annual_volatility'] = trim($each_row_arr[7]);
                 $volatility_arr['annual_volatility_p'] = trim($each_row_arr[7]) * 100;
                 
-//                $volatility_arr['derivative'] = $this->Put_call_model->checkCompanyExistInPCByIdAndSymbol($company_id, $index_or_company_symbol);
                 $volatility_arr['derivative'] = $Send_Api_Contr->checkCompanyExistInPCByIdAndSymbol($company_id, $index_or_company_symbol);
                 
                 $volatility_arr["market_date"] = $date_csv;
@@ -695,8 +676,6 @@ class Fetch_Controller extends MX_Controller {
                 $this->load->model('Volatility_model');
                 
                 $this->Volatility_model->insertDailyAnnualyVolatility($volatility_arr);
-                
-//                exit;
                 
             }
             
