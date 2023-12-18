@@ -131,7 +131,64 @@ $this->load->helper('function_helper');
         <input type="submit" class="d-none apply-btn-actionz" value="Apply">
 
     </form>
+    
+    <?php
 
+        if (!empty($fii_sector_data) && count($fii_sector_data) > 0 && !empty($sector ) ) {
+        // Create an associative array to store the sum of each metric for each report_date and sector_name
+        $sum_by_date_and_sector = array();
+
+        // Loop through the array and accumulate the values
+        foreach ($fii_sector_data as $item) {
+            $report_date = $item->report_date;
+            $sector_name = $item->sector_name;
+            $equity = $item->equity;
+            $debt = $item->debt;
+            $debt_vrr = $item->debt_vrr;
+            $hybrid = $item->hybrid;
+            $total = $item->total;
+
+            // If the report_date and sector_name combination is not already in the sum array, initialize it to 0
+            if (!isset($sum_by_date_and_sector[$report_date][$sector_name])) {
+                $sum_by_date_and_sector[$report_date][$sector_name] = array(
+                    'equity' => 0,
+                    'debt' => 0,
+                    'debt_vrr' => 0,
+                    'hybrid' => 0,
+                    'total' => 0,
+                );
+            }
+
+            // Accumulate the values for the current report_date and sector_name
+            $sum_by_date_and_sector[$report_date][$sector_name]['equity'] += $equity;
+            $sum_by_date_and_sector[$report_date][$sector_name]['debt'] += $debt;
+            $sum_by_date_and_sector[$report_date][$sector_name]['debt_vrr'] += $debt_vrr;
+            $sum_by_date_and_sector[$report_date][$sector_name]['hybrid'] += $hybrid;
+            $sum_by_date_and_sector[$report_date][$sector_name]['total'] += $total;
+        }
+
+        // Now $sum_by_date_and_sector contains the sum of each metric for each report_date and sector_name
+        // Create a new array with the same structure as $fii_sector_data
+        $sum_array = array();
+        foreach ($sum_by_date_and_sector as $report_date => $sectors) {
+            foreach ($sectors as $sector_name => $sums) {
+                $sum_array[] = (object) array(
+                    'report_date' => $report_date,
+                    'sector_name' => $sector_name,
+                    'investment_type' => 'All',
+                    'equity' => $sums['equity'],
+                    'debt' => $sums['debt'],
+                    'debt_vrr' => $sums['debt_vrr'],
+                    'hybrid' => $sums['hybrid'],
+                    'total' => $sums['total'],
+                );
+            }
+        }
+        // Now $sum_equity_by_date contains the sum of equity for each report_date
+        // echo '<pre>';  print_r($sum_array); exit;
+        $fii_sector_data = $sum_array;
+        }
+        ?>
 
     <?php if (!empty($fii_sector_data) && count($fii_sector_data) > 0) { ?>
 
@@ -139,9 +196,11 @@ $this->load->helper('function_helper');
             <thead>
                 <tr>
                     <th>Date</th>
+                    <th>Investment Type</th>
                     <th>Sector</th>
                     <th>Equity</th>
                     <th>Debt</th>
+                    <th>Debt VRR</th>
                     <th>Hybrid</th>
                     <th>Total</th>
                 </tr>
@@ -152,6 +211,7 @@ $this->load->helper('function_helper');
 
                     <tr>
                         <td><?php echo date('d-M-Y', strtotime($fii_sector_data_value->report_date)); ?></td>
+                        <td><?php echo $fii_sector_data_value->investment_type; ?></td>
                         <td><?php echo $fii_sector_data_value->sector_name; ?></td>
                         <td>
                             <?php
@@ -192,6 +252,12 @@ $this->load->helper('function_helper');
 
                             }?>
                             </span>   
+                        </td>
+                        <td>
+                        <?php 
+                            
+                            echo number_format($fii_sector_data_value->debt_vrr); 
+                        ?>
                         </td>
                         <td>
                             <?php 
