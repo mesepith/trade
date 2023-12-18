@@ -1,3 +1,5 @@
+<?php $this->load->helper('function_helper'); ?>
+
 <style>
     @media (min-width: 1800px){
         div.container {
@@ -326,7 +328,7 @@
                     <td>
                         <?php 
                             $total_trade_volume_sum = $total_trade_volume_sum + $sector_data_value->trade_volume_sum;
-                            echo money_format('%!.0n', $sector_data_value->trade_volume_sum); 
+                            echo indianNumberFormat($sector_data_value->trade_volume_sum); 
                         ?>
                     </td>
                 </tr>

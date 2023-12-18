@@ -156,7 +156,7 @@ $this->load->helper('function_helper');
                         <td>
                             <?php
                             
-                            echo money_format('%!.0n', $fii_sector_data_value->equity); 
+                            echo number_format($fii_sector_data_value->equity); 
                             
                             if( !empty($sector) &&  $fii_sector_data_key!=0 ){
                             
@@ -176,7 +176,7 @@ $this->load->helper('function_helper');
                         <td>
                             <?php 
                             
-                            echo money_format('%!.0n', $fii_sector_data_value->debt); 
+                            echo number_format($fii_sector_data_value->debt); 
                             
                             if( !empty($sector) &&  $fii_sector_data_key!=0 ){
                             
@@ -196,7 +196,7 @@ $this->load->helper('function_helper');
                         <td>
                             <?php 
                             
-                            echo money_format('%!.0n', $fii_sector_data_value->hybrid); 
+                            echo number_format($fii_sector_data_value->hybrid); 
                             
                             if( !empty($sector) &&  $fii_sector_data_key!=0 ){
                                 
@@ -216,7 +216,7 @@ $this->load->helper('function_helper');
                         <td>
                             <?php 
                             
-                            echo money_format('%!.0n', $fii_sector_data_value->total); 
+                            echo number_format($fii_sector_data_value->total); 
                             
                             if( !empty($sector) &&  $fii_sector_data_key!=0 ){
                                 
