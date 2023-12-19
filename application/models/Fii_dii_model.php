@@ -163,6 +163,22 @@ class Fii_dii_model extends CI_Model {
         
         return $query->result();
     }
+
+    /*
+     * Fetch Fii Investing Sector List Date wise
+     */
+    function fiiInvestingsectoListDateWise($market_date, $market_date_to){
+        
+        $this->db->where('status', 1); 
+        $this->db->group_by('sector_name'); 
+        $this->db->order_by('sector_name');
+        $this->db->where('report_date >= ', $market_date );
+        $this->db->where('report_date <= "' . $market_date_to . '"');
+        
+        $query = $this->db->get('fii_sector_invest');
+        
+        return $query->result();
+    }
     
     /*
      * Display Fii Sector Investment Data

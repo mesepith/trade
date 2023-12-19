@@ -94,7 +94,7 @@ class Fii_Dii_Disp_Contr extends MX_Controller {
         
         $this->load->model('Fii_dii_model');
         
-        $fii_investing_sectors = $this->Fii_dii_model->fiiInvestingsectoList();
+        
         
         $market_date = $this->input->get('market_date');
         $market_date_to = $this->input->get('market_date_to');
@@ -103,7 +103,10 @@ class Fii_Dii_Disp_Contr extends MX_Controller {
         if(empty($market_date)){
             
             $market_date = date('Y-m-d');
+            $fii_investing_sectors = $this->Fii_dii_model->fiiInvestingsectoList();
             
+        }else{
+            $fii_investing_sectors = $this->Fii_dii_model->fiiInvestingsectoListDateWise($market_date, $market_date_to);
         }
         
         $fii_sector_data = $this->Fii_dii_model->fetchFiiSectorData($market_date, $market_date_to, $sector);
