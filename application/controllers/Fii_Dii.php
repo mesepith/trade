@@ -200,6 +200,7 @@ class Fii_Dii extends MX_Controller {
         $insert_data['debt_vrr'] = (!empty($debt_vrr)) ? trim($debt_vrr) : 0;
         $insert_data['hybrid'] = (!empty($hybrid)) ? trim($hybrid) : 0;
         $insert_data['total'] = (!empty($total)) ? trim($total) : 0;
+        $insert_data['source'] = 'nsdl';
 
         $return = $this->Fii_dii_model->insertNsdlSectoreInvestDataofFii( $insert_data );
         
