@@ -29,7 +29,21 @@ class Fetch_Shareholding extends MX_Controller {
         $System_Notification_contr = new System_Notification_Controller();
         $Nse_Contr = new Nse_Contr();
 
-        $company_list = $Send_Api_Contr->listAllCompanies(0);
+        $last_calculated_company_id = 0;
+
+        $this->load->model('Analysis_task_model');
+        $last_calculated_company = $this->Analysis_task_model->lastCalculatedCompany('share_distribution');
+        echo '<pre>'; print_r($last_calculated_company); exit;
+
+        if( !empty($last_calculated_company) ){
+            
+            $last_crawled_company_id = $last_calculated_company->company_id;
+            $last_calculated_company_id = ($last_crawled_company_id);
+            $last_calculated_time = $last_calculated_company->updated_at;
+
+        }
+
+        $company_list = $Send_Api_Contr->listAllCompanies($last_calculated_company_id);
 
         foreach ($company_list AS $company_list_value) {
 
@@ -84,21 +98,70 @@ class Fetch_Shareholding extends MX_Controller {
 
                 $share_distribution_id = $this->ShareHolding_model->insertShareDistribution($share_distribution_arr);
 
-                if ($share_distribution_id > 0) {
+                /*if ($share_distribution_id > 0) {
 
                     $this->shareHoldingsEquities($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
                     $this->declaration($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
                     $this->unclaimedShares($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
                     $this->concertShare($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
                     $this->beneficialOwners($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
-                }
+                }*/
             }
 
+            $this->Analysis_task_model->ocCalculationDone($company_id, $company_symbol, 'share_distribution');#this means we have stored last share distribution for this company 
             echo '<br/><br/> ********************************************** <br/><br/>';
-//            exit();
+        //    exit();
         }
 
         flush();
+    }
+
+    /*
+    Crawl sll share distribution data, which has all_data_fetched = 0 in share_distribution table
+    */
+    function crawlAllShareDistributionRecords(){
+
+        $Python_contr = new Python_Controller();
+        $Python_contr->executeCookieScript();
+
+        $Send_Api_Contr = new Send_Api_Contr();
+        $Nse_Contr = new Nse_Contr();
+
+        $company_list = $Send_Api_Contr->listAllCompanies(0);
+
+        foreach ($company_list AS $company_list_value) {
+
+            $company_symbol = $company_list_value['symbol'];
+            $company_id = $company_list_value['id'];
+
+            $this->load->model('ShareHolding_model');
+            $records = $this->ShareHolding_model->listPendingFetchedShareDistribution($company_id, $company_symbol);
+
+            if (empty($records)) {
+                continue;
+            }
+
+            foreach($records as $each_records ){
+
+                $ndsId = $each_records->record_id;
+                $market_date = $each_records->market_date;
+                $share_distribution_id = $each_records->id;
+
+                $this->shareHoldingsEquities($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
+                $this->declaration($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
+                $this->unclaimedShares($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
+                $this->concertShare($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
+                $this->beneficialOwners($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
+
+                $records = $this->ShareHolding_model->updateShareDistributionFetchStatus($company_id, $company_symbol, $ndsId, $share_distribution_id);
+                
+            }
+
+            echo '<pre>'; print_r($records); exit;
+        }
+
+        
+
     }
 
     /*

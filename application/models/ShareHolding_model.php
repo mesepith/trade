@@ -386,5 +386,42 @@ class ShareHolding_model extends CI_Model {
         
         return $insert_id;
     }
+
+    /**
+     * List share ditribution records that needs to be crawl by all_data_fetched = 0
+     */
+    function listPendingFetchedShareDistribution($company_id, $company_symbol){
+
+        $this->db->where('status', 1); 
+        $this->db->where('company_id', $company_id); 
+        $this->db->where('company_symbol', $company_symbol); 
+        $this->db->where('all_data_fetched', 0); 
+        // $this->db->order_by('id'); 
+        
+        $query = $this->db->get('share_distribution');
+        
+        if (count($query->result()) > 0 ) {
+        
+            $data = $query->result();
+
+            return $data;
+        
+        }else{
+            
+            return false;
+        }
+    }
+
+    /**
+     * On succesfull Crawl, update Share Distribution Fetch Status 
+     */
+    function updateShareDistributionFetchStatus($company_id, $company_symbol, $ndsId, $share_distribution_id){
+
+        $this->db->where('id', $share_distribution_id);
+        $this->db->where('company_id', $company_id);
+        $this->db->where('company_symbol', $company_symbol);
+        $this->db->where('record_id', $ndsId);
+        $this->db->update('share_distribution', array('all_data_fetched' => 1,'updated_at'=> date("Y-m-d H:i:s") ));
+    }
        
 }
