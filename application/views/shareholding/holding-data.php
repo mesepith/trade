@@ -1,3 +1,4 @@
+<?php $this->load->helper('function_helper'); ?>
 <style>
     
     @media (min-width: 1800px){
@@ -51,15 +52,15 @@
                 <td>
                     <?php echo $share_data_value->shareholder_category; ?>
                 </td>
-                <td><?php echo money_format('%!.0n', $share_data_value->shareholders_no); ?></td>
-                <td><?php echo money_format('%!.0n', $share_data_value->fully_paid_up_equity_shares_no); ?></td>
-                <td><?php echo money_format('%!.0n', $share_data_value->total_shares); ?></td>
+                <td><?php echo indianNumberFormat($share_data_value->shareholders_no); ?></td>
+                <td><?php echo indianNumberFormat($share_data_value->fully_paid_up_equity_shares_no); ?></td>
+                <td><?php echo indianNumberFormat($share_data_value->total_shares); ?></td>
                 <td><?php echo $share_data_value->share_in_p_a; ?></td>
-                <td><?php echo money_format('%!.0n', $share_data_value->no_of_voting_right); ?></td>
-                <td><?php echo money_format('%!.0n', $share_data_value->total_no_of_voting_right); ?></td>
+                <td><?php echo indianNumberFormat($share_data_value->no_of_voting_right); ?></td>
+                <td><?php echo indianNumberFormat($share_data_value->total_no_of_voting_right); ?></td>
                 <td><?php echo $share_data_value->voting_share_p; ?></td>
                 <td><?php echo $share_data_value->share_in_p_b; ?></td>
-                <td><?php echo money_format('%!.0n', $share_data_value->no_of_shares_demat_form); ?></td>
+                <td><?php echo indianNumberFormat($share_data_value->no_of_shares_demat_form); ?></td>
             </tr>
              <?php } ?>
             

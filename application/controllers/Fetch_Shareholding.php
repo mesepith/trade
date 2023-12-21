@@ -16,6 +16,9 @@ class Fetch_Shareholding extends MX_Controller {
 
     function fetchShareHoldingDataByCompany() {
 
+        $Python_contr = new Python_Controller();
+        $Python_contr->executeCookieScript();
+
         ini_set('max_execution_time', 0);
 
         ini_set('xdebug.max_nesting_level', 200000000000000);
@@ -43,8 +46,8 @@ class Fetch_Shareholding extends MX_Controller {
 
             $share_holding_master = $Nse_Contr->curlNse($share_holding_master_url, $share_holding_master_referer);
 
-//            echo '<pre>';
-//            print_r($share_holding_master); 
+        //    echo '<pre>';
+        //    print_r($share_holding_master); exit;
 
             if (empty($share_holding_master)) {
                 continue;
@@ -57,13 +60,15 @@ class Fetch_Shareholding extends MX_Controller {
             foreach ($share_holding_master AS $share_holding_master_val) {
 
                 $count++;
-                echo '<br/>';
-                echo 'count : ' . $count;
+                // echo '<br/>';
+                // echo 'count : ' . $count;
 
-                echo '<br/>';
-                echo 'Date ' . $market_date = trim($share_holding_master_val['date']);
-                echo '<br/>';
-                echo '$ndsId : ' . $ndsId = trim($share_holding_master_val['recordId']);
+                // echo '<br/>';
+                $market_date = trim($share_holding_master_val['date']);
+                // echo 'Date ' . $market_date; 
+                // echo '<br/>';
+                $ndsId = trim($share_holding_master_val['recordId']);
+                // echo '$ndsId : ' . $ndsId;
 
                 $share_distribution_arr = array();
 
@@ -120,9 +125,10 @@ class Fetch_Shareholding extends MX_Controller {
             if (empty($share_arr)) {
                 return;
             }
-
-            //        echo '<pre>';
-            //        print_r($share_arr);                 
+            
+            // echo '<br/> $url_arr_val : ' .$url_arr_val . '<br/>';
+            // echo '<pre>';
+            // print_r($share_arr);  exit;               
 
             foreach ($share_arr AS $share_arr_val) {
 
@@ -175,15 +181,15 @@ class Fetch_Shareholding extends MX_Controller {
 
                 $share_insert_arr["created_at"] = date("Y-m-d H:i:s");
 
-                echo '<pre>';
-                print_r($share_insert_arr);
+                // echo '<pre>';
+                // print_r($share_insert_arr);
 
                 $this->ShareHolding_model->insertShareHolding($share_insert_arr);
             }
 
-            echo '<br/>';
-            echo ' ################################################# ';
-            echo '<br/>';
+            // echo '<br/>';
+            // echo ' ################################################# ';
+            // echo '<br/>';
         }
 
 //        exit;
