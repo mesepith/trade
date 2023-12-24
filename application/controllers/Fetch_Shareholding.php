@@ -128,18 +128,24 @@ class Fetch_Shareholding extends MX_Controller {
         $Nse_Contr = new Nse_Contr();
 
         $company_list = $Send_Api_Contr->listAllCompanies(0);
+        // echo '<pre>'; print_r($company_list);
 
         foreach ($company_list AS $company_list_value) {
 
             $company_symbol = $company_list_value['symbol'];
             $company_id = $company_list_value['id'];
 
+            echo '<br/> $company_symbol : ' . $company_symbol . ', company_id : ' . $company_id . '<br/>';
+
             $this->load->model('ShareHolding_model');
             $records = $this->ShareHolding_model->listPendingFetchedShareDistribution($company_id, $company_symbol);
-
+           
             if (empty($records)) {
+                echo '<br/> No records for  : ' . $company_symbol . '<br/>';
                 continue;
             }
+
+            // echo '<pre>'; print_r($records); exit;
 
             foreach($records as $each_records ){
 
@@ -147,27 +153,63 @@ class Fetch_Shareholding extends MX_Controller {
                 $market_date = $each_records->market_date;
                 $share_distribution_id = $each_records->id;
 
+                echo '<br/> ndsId : ' . $ndsId . ', market_date : ' . $market_date . ', share_distribution_id : ' . $share_distribution_id . '<br/>';
+
                 //We delete Old Fetching status to avoid duplicacy
                 $this->ShareHolding_model->deleteOldFetching($company_id, $company_symbol, $ndsId, $share_distribution_id);
 
                 $this->shareHoldingsEquities($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
+                // exit;
                 $this->declaration($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
                 $this->unclaimedShares($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
                 $this->concertShare($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
                 $this->beneficialOwners($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
 
                 $records = $this->ShareHolding_model->updateShareDistributionFetchStatus($company_id, $company_symbol, $ndsId, $share_distribution_id);
+
+                $this->shareDistributionNewApiTest($company_id, $company_symbol, $ndsId, $market_date, $Nse_Contr);
+                // exit;
                 
             }
 
             // exit;
 
-            // echo '<pre>'; print_r($records); exit;
+            
         }
 
-        
-
     }
+
+    /**
+     * New  API for Share distribution test
+     */
+
+     function shareDistributionNewApiTest($company_id, $company_symbol, $ndsId, $market_date, $Nse_Contr){
+
+        $new_format_date = date("d-M-Y", strtotime($market_date));
+        echo $new_format_date; 
+
+        $url_arr = array(
+            'disclosure' => 'https://www.nseindia.com/api/corporate-share-holdings-equities?index=disclsrTM&symbol='.$company_symbol.'&period_ended='. $new_format_date,
+            'clarifications' => 'https://www.nseindia.com/api/corporate-share-holdings-equities?ndsId='.$ndsId.'&index=clarifications',
+            'foreign-ownership-limits' => 'https://www.nseindia.com/api/corporate-share-holdings-equities?ndsId='.$ndsId.'&index=foreign-ownership-limits',
+        );
+
+        $referer = 'https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=' . urlencode($company_symbol) . '&tabIndex=equity';
+
+        foreach ($url_arr AS $url_arr_key => $url_arr_val) {
+
+            $url = $url_arr_val;
+
+            $share_arr = $Nse_Contr->curlNse($url, $referer);
+
+            if (empty($share_arr)) {
+                return;
+            }
+
+            $this->ShareHolding_model->insertShareDistributionNewApiTest($company_id, $company_symbol, $ndsId, $market_date, $url_arr_key, $url, $share_arr);
+        }
+
+     }
 
     /*
      * Get share holders details
@@ -190,13 +232,16 @@ class Fetch_Shareholding extends MX_Controller {
 
             $share_arr = $Nse_Contr->curlNse($url, $referer);
 
+            // echo 'share_arr ';
+            // print_r($share_arr);  exit; 
+
             if (empty($share_arr)) {
                 return;
             }
             
             // echo '<br/> $url_arr_val : ' .$url_arr_val . '<br/>';
             // echo '<pre>';
-            // print_r($share_arr);  exit;               
+                          
 
             foreach ($share_arr AS $share_arr_val) {
 

@@ -442,5 +442,23 @@ class ShareHolding_model extends CI_Model {
         $this->db->where('record_id', $ndsId);
         $this->db->update('share_distribution', array('all_data_fetched' => 1,'updated_at'=> date("Y-m-d H:i:s") ));
     }
+
+    /**
+     * New API of Share distribution test
+     */
+    function insertShareDistributionNewApiTest( $company_id, $company_symbol, $ndsId, $market_date, $api_name, $url, $share_arr ){
+
+        $data["created_at"] = date("Y-m-d H:i:s");
+        $data["updated_at"] = date("Y-m-d H:i:s");
+        $data['company_id'] = $company_id;
+        $data['company_symbol'] = $company_symbol;
+        $data['record_id'] = $ndsId;
+        $data['market_date'] = $market_date;
+        $data['api_name'] = $api_name;
+        $data['url'] = $url;
+        $data['api_data'] = json_encode($share_arr);
+
+        $this->db->insert('sharedistribution_apis_test', $data);
+    }
        
 }

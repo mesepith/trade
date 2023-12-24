@@ -139,8 +139,8 @@ class Nse_Contr extends MX_Controller {
         
         $output = json_decode(exec($cmd) , true);
         
-//        echo '<pre>';
-//        print_r($output); 
+    //    echo '<pre>';
+    //    print_r($output); 
         
         return $output;
     }
