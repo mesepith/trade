@@ -147,6 +147,9 @@ class Fetch_Shareholding extends MX_Controller {
                 $market_date = $each_records->market_date;
                 $share_distribution_id = $each_records->id;
 
+                //We delete Old Fetching status to avoid duplicacy
+                $this->ShareHolding_model->deleteOldFetching($company_id, $company_symbol, $ndsId, $share_distribution_id);
+
                 $this->shareHoldingsEquities($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
                 $this->declaration($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
                 $this->unclaimedShares($company_id, $company_symbol, $Nse_Contr, $ndsId, $market_date, $share_distribution_id);
@@ -157,7 +160,9 @@ class Fetch_Shareholding extends MX_Controller {
                 
             }
 
-            echo '<pre>'; print_r($records); exit;
+            // exit;
+
+            // echo '<pre>'; print_r($records); exit;
         }
 
         

@@ -413,6 +413,25 @@ class ShareHolding_model extends CI_Model {
     }
 
     /**
+     * Delete Old Fetching status to avoid duplicacy
+     */
+
+    function deleteOldFetching( $company_id, $company_symbol, $ndsId, $share_distribution_id ){
+
+        $tables = array('share_holding', 'share_declaration', 'share_unclaimed', 'share_consert', 'share_beneficial');
+
+        foreach ($tables as $table) {
+            $this->db->set('status', 0);
+            $this->db->where('share_distribution_id', $share_distribution_id);
+            $this->db->where('company_id', $company_id);
+            $this->db->where('company_symbol', $company_symbol);
+            $this->db->where('record_id', $ndsId);
+            $this->db->update($table);
+        }
+
+    }
+
+    /**
      * On succesfull Crawl, update Share Distribution Fetch Status 
      */
     function updateShareDistributionFetchStatus($company_id, $company_symbol, $ndsId, $share_distribution_id){
