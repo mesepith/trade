@@ -6,6 +6,7 @@
 
 .yes{background-color: green; color: white;    padding: 4px; font-weight: bolder;}
 .are_all_good_stock_yes{ background-color: green; color: darkorange; font-weight: bolder;}
+tr.are_all_good_stock_yes td a{color: #fff;}
 @media (min-width: 1400px){
     .container {
         max-width: 1400px;
