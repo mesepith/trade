@@ -33,7 +33,7 @@ class Fetch_Shareholding extends MX_Controller {
 
         $this->load->model('Analysis_task_model');
         $last_calculated_company = $this->Analysis_task_model->lastCalculatedCompany('share_distribution');
-        echo '<pre>'; print_r($last_calculated_company); exit;
+        // echo '<pre>'; print_r($last_calculated_company); exit;
 
         if( !empty($last_calculated_company) ){
             
@@ -123,6 +123,11 @@ class Fetch_Shareholding extends MX_Controller {
 
         $Python_contr = new Python_Controller();
         $Python_contr->executeCookieScript();
+
+        ini_set('max_execution_time', 0);
+
+        ini_set('xdebug.max_nesting_level', 200000000000000);
+        ini_set('memory_limit', '-1');
 
         $Send_Api_Contr = new Send_Api_Contr();
         $Nse_Contr = new Nse_Contr();
