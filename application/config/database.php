@@ -85,9 +85,9 @@ if(ENVIRONMENT == 'production'){
 	$db_pass = ">>6|WS5jL";
 }else if(ENVIRONMENT == 'development'){
 	$db_host = '127.0.0.1';	
-	$db_name = 'u797334786_staging_trade';
-	$db_user_name = 'u797334786_rajz_uat';
-	$db_pass = ">>6|WS5jL";
+	$db_name = 'trade';
+	$db_user_name = 'root';
+	$db_pass = "";
 }
 
 $db['default'] = array(

@@ -160,7 +160,7 @@ if (ENVIRONMENT === "development") {
     define('PARENT_OC_WEB_SERVER','https://option.ampstart.co/');
     define('PARENT_FUTURE_WEB_SERVER','http://localhost/'.DEV_MAIN_FOLDER.'/');
 
-    define('PYTHON_COOKIE_SCRIPT_NAME', "staging-fetch-nsit-and-nseappid.py");
+    define('PYTHON_COOKIE_SCRIPT_NAME', "dev-fetch-nsit-and-nseappid.py");
     
 } else if (ENVIRONMENT === "testing") {
 
