@@ -177,8 +177,9 @@ class Fetch_Shareholding extends MX_Controller {
                 
             }
 
+            $Python_contr->executeCookieScript();
+            sleep(5);
             // exit;
-
             
         }
 
