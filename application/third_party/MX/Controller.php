@@ -40,10 +40,23 @@ require dirname(__FILE__).'/Custom_Controller.php';
 class MX_Controller extends Custom_Controller
 {
 	public $autoload = array();
+	public $load;
 	
 	public function __construct() 
 	{
-		$class = str_replace(CI::$APP->config->item('controller_suffix'), '', get_class($this));
+		//$class = str_replace(CI::$APP->config->item('controller_suffix'), '', get_class($this));
+		
+		$suffix = CI::$APP->config->item('controller_suffix');
+
+		if ($suffix !== null) {
+
+			$class = str_replace($suffix, '', get_class($this));
+		}else{
+
+			$class = get_class($this);
+		}	
+		
+		
 		log_message('debug', $class." MX_Controller Initialized");
 		Modules::$registry[strtolower($class)] = $this;	
 		

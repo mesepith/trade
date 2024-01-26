@@ -84,6 +84,7 @@ class DateTime extends \DateTime
 	 * @param string $format A format string accepted by get_format()
 	 * @return string formatted date and time string
 	 */
+	#[\ReturnTypeWillChange]
 	public function format($format=null)
 	{
 		return parent::format(self::get_format($format));
@@ -124,24 +125,28 @@ class DateTime extends \DateTime
 			$this->model->flag_dirty($this->attribute_name);
 	}
 
+	#[\ReturnTypeWillChange]
 	public function setDate($year, $month, $day)
 	{
 		$this->flag_dirty();
 		call_user_func_array(array($this,'parent::setDate'),func_get_args());
 	}
 
+	#[\ReturnTypeWillChange]
 	public function setISODate($year, $week , $day=null)
 	{
 		$this->flag_dirty();
 		call_user_func_array(array($this,'parent::setISODate'),func_get_args());
 	}
 
+	#[\ReturnTypeWillChange]
 	public function setTime($hour, $minute, $second=null, $microseconds = NULL)
 	{
 		$this->flag_dirty();
 		call_user_func_array(array($this,'parent::setTime'),func_get_args());
 	}
 
+	#[\ReturnTypeWillChange]
 	public function setTimestamp($unixtimestamp)
 	{
 		$this->flag_dirty();

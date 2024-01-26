@@ -45,7 +45,6 @@ if( ENVIRONMENT === "development"){
 }
 
 $config['base_url'] = PROTOCOL . '://'.$HTTP_HOSTZ.'/'.$main_folder.'/';
-
 /*
 |--------------------------------------------------------------------------
 | Index File
