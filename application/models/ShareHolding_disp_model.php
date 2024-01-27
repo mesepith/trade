@@ -29,7 +29,7 @@ class ShareHolding_disp_model extends CI_Model {
             
         }
         
-        
+        $this->db->order_by('market_date', 'desc');
         
         $query = $this->db->get('share_distribution');
 //        echo $this->db->last_query() . '<br/>';
