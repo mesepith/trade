@@ -44,7 +44,7 @@ class ShareHolding_disp_model extends CI_Model {
             /* We are not allowing to looping this function more than 5 times as it will slow server */
             $loop_count++;
 //            echo '$loop_count : ' . $loop_count . '<br/>';
-            if($loop_count > 100){ return false; }
+            if($loop_count > 120){ return false; }
             
             /*If we dont find data on current data then we search in previous date */
             
