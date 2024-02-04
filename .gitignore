@@ -13,3 +13,4 @@ assets/fii-dii/nsdl-sector-invest/*
 fetchz-py/rbi/__pycache__/
 .htaccess
 application/helpers/smtp_helper.php
+application/session
