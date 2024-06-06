@@ -184,7 +184,7 @@ if (ENVIRONMENT === "development") {
     define('AHZ_SERVER','https://www.ahealz.com');
     define('TRADE_SELENIUM_SERVER','http://35.225.106.210/trade');
     
-    define('PARENT_WEB_SERVER','https://www.ampstart.co/');
+    define('PARENT_WEB_SERVER','https://trade.zahiralam.com/');
     define('PARENT_OC_WEB_SERVER','https://option.ampstart.co/');
     define('PARENT_FUTURE_WEB_SERVER','https://www.ampstart.co/');
 
