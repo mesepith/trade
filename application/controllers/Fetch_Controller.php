@@ -773,12 +773,9 @@ class Fetch_Controller extends MX_Controller {
                     )
                 )
             );
-            $url = "https://www.nseindia.com/archives/nsccl/volt/CMVOLT_".date('dmY').".CSV";   
-            echo $url . "<br/>";         
+            $url = "https://www1.nseindia.com/archives/nsccl/volt/CMVOLT_".date('dmY').".CSV";            
             
             $data = file_get_contents($url, false, $context);
-
-            echo '<pre>'; print_r($data); exit;
             
             if($data === FALSE) {
 
