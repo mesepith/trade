@@ -174,7 +174,7 @@ class Sectors_Controller extends MX_Controller {
     }
     
     /*
-     * Display Nifty Live Data
+     * Display Nifty Live Data, with three parameter
      */
     function displayNiftyLiveData( $sector_id=13, $sector_name='NIFTY 50', $api=false ){
         
