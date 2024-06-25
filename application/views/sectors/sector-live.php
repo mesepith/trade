@@ -75,12 +75,12 @@
 
 
 <div class="container">
-    <p>Coming Soon</p>
     
     <!--<div id="nifty-green-red" class='nifty-green-red <?php // echo ($sector_data[$total-1]->change>0) ? 'col-green' : 'col-red' ?>'>-->
     <div id="nifty-green-red" class=''>
     
         <h4>Nifty <span class="nifty_latest_price"></span></h4>
+        <p>Coming Soon</p>
     <div class="nifty_latest_chng">
         
        
