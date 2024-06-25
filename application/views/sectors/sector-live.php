@@ -75,6 +75,7 @@
 
 
 <div class="container">
+    <p>Coming Soon</p>
     
     <!--<div id="nifty-green-red" class='nifty-green-red <?php // echo ($sector_data[$total-1]->change>0) ? 'col-green' : 'col-red' ?>'>-->
     <div id="nifty-green-red" class=''>
