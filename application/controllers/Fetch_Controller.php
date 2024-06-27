@@ -756,6 +756,7 @@ class Fetch_Controller extends MX_Controller {
     }
     
     /*
+    * @Author:
      * Read daily volatility and annual volatility
      */
     
