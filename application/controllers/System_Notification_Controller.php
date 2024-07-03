@@ -536,5 +536,19 @@ class System_Notification_Controller extends MX_Controller {
         send_mailz($mail_data);
         
     }
+
+    function stockNotInserted(){        
+        
+        $msg = 'ENVIRONMENT : ' . ENVIRONMENT . ' , TODAYS STOCK IS NOT INSERTED: ';
+        
+        $this->load->helper('smtp_helper');
+        $mail_data['name']= 'Zahir ';
+        $mail_data['from']= 'developer@zybloom.com';
+        $mail_data['to']='zahiralam19cse@gmail.com';               
+        $mail_data['subject'] = 'Todays Stock is not inserted: ';   
+        $mail_data['message']= $msg;
+        send_mailz($mail_data);
+        
+    }
     
 }
