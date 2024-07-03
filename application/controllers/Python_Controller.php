@@ -185,19 +185,19 @@ class Python_Controller extends MX_Controller {
     */
     public function executeCookieScript(){
 
-        if (ENVIRONMENT === "development") {
+        // if (ENVIRONMENT === "development") {
             
-            $command = '/var/www/html/fetch_share_market/zahir-py-env/bin/python3 /var/www/html/fetch_share_market/nse-cookies/' . PYTHON_COOKIE_SCRIPT_NAME;
+        //     $command = '/var/www/html/fetch_share_market/zahir-py-env/bin/python3 /var/www/html/fetch_share_market/nse-cookies/' . PYTHON_COOKIE_SCRIPT_NAME;
 
-        }else{
+        // }else{
 
-            $command = '/home/u797334786/zahir-py-env/bin/python3 /home/u797334786/domains/' . PYTHON_COOKIE_SCRIPT_NAME;
+        //     $command = '/home/u797334786/zahir-py-env/bin/python3 /home/u797334786/domains/' . PYTHON_COOKIE_SCRIPT_NAME;
 
-        }
+        // }
         
-        $output = exec($command);
-        echo $output;
-        echo '<br/><br/>';
+        // $output = exec($command);
+        // echo $output;
+        // echo '<br/><br/>';
     }
     
 
