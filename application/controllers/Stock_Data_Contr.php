@@ -51,4 +51,22 @@ class Stock_Data_Contr extends MX_Controller {
 
     }
 
+     /*
+     * @author: ZAHIR
+     * DESC: Check if todays stock is inserted
+     */
+    
+     public function checkTodaysStockInserted( ) {
+        
+        
+        $this->load->model('Stock_data_model');   
+        
+        echo $is_a_present = $this->Stock_data_model->checkTodaysStockInserted(FAMOUS_STOCK_A);
+        echo $is_b_present = $this->Stock_data_model->checkTodaysStockInserted(FIRST_SERIAL_FAMOUS_STOCK);
+        echo $is_c_present = $this->Stock_data_model->checkTodaysStockInserted(LAST_SERIAL_FAMOUS_STOCK);
+         
+        exit;
+
+    }
+
 }

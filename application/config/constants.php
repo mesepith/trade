@@ -209,6 +209,7 @@ if (date('D') == 'Sat') {
 
 define('FIRST_SERIAL_FAMOUS_STOCK', 'ASIANPAINT');
 define('LAST_SERIAL_FAMOUS_STOCK', 'TCS');
+define('FAMOUS_STOCK_A', 'GAIL');
 
 define('MIN_STOCK_CHECK_COUNT', 4);
 

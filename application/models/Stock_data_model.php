@@ -404,5 +404,34 @@ class Stock_data_model extends CI_Model {
         $this->db->update('stock_data', $whole_data );
         
     }
+
+    /*
+    * @author: ZAHIR
+    * DESC: Check todays stock is inserted or not
+    */
+    function checkTodaysStockInserted($company_symbol){
+
+        $this->db->where('status', 1);
+        $this->db->where('stock_date', date('Y-m-d'));
+        $this->db->where('stock_time', '00:00:00');
+        $this->db->where('company_symbol', $company_symbol);
+        $this->db->order_by('id desc');
+        $this->db->limit(1);
+        $this->db->select('count(*) AS total');
+        $query = $this->db->get('stock_data');  
+//        echo $this->db->last_query(); exit;
+//        echo '<br/>';
+//        echo '<pre>';
+//        print_r($query->result()); exit;
+        
+//        $is_present = $query->result()[0];
+        
+//        print_r($query->result()[0]->ispresent);
+        
+//        echo $is_present;
+        
+        return $query->result()[0]->total;
+
+    }
    
 }
