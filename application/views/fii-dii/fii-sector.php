@@ -361,6 +361,7 @@ $this->load->helper('function_helper');
                         </span> 
 
                     </td>
+                    <td></td>
                     <td>
                         <b><?php echo number_format($sum_hybrid); ?></b>
                         <?php 
