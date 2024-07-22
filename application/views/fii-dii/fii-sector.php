@@ -312,7 +312,27 @@ $this->load->helper('function_helper');
                     <td>Total</td>
                     <td></td>
                     <td></td>
-                    <td><b><?php echo number_format($sum_equity); ?></b></td> 
+                    <td>
+                        <b><?php echo number_format($sum_equity); ?></b>
+                        <?php 
+
+                        if( !empty($sector) &&  count($fii_sector_data)>0 ){
+
+                            $equity_percnt = percentOfTwoNumber( $fii_sector_data[$fii_sector_data_key]->equity, $fii_sector_data[0]->equity );
+                        
+                        ?>
+
+                        <br/>
+                        <span class="<?php echo ($equity_percnt>0 ) ? 'col-green' : 'col-red' ?>">
+
+                        <?php
+
+                            echo "(" . $equity_percnt . "%)";
+
+                        }?>
+                        </span> 
+
+                    </td> 
                 </tr>
 
             </tbody>
