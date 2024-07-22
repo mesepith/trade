@@ -131,6 +131,26 @@ function percentOfTwoNumber($first_number, $second_number) {
 }
 
 /*
+ * Display percentage between differance of two number
+ */
+
+ function percentOfNumbers($current_value, $first_value) {
+    try {
+        if ($first_value == 0) {
+            throw new Exception('Buying value cannot be zero');
+        }
+
+        $step1 = $current_value - $first_value;
+        $step2 = ($step1 / $first_value) * 100;
+
+        return number_format($step2, 2);
+    } catch (Exception $e) {
+        return false;
+    }
+}
+
+
+/*
  * Data Calculate Quatarly, Monthly And Weekly wise
  */
 

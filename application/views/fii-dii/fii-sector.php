@@ -226,7 +226,7 @@ $this->load->helper('function_helper');
                             
                             if( !empty($sector) &&  $fii_sector_data_key!=0 ){
                             
-                                $equity_diff_percnt = percentOfTwoNumber( $fii_sector_data_value->equity, $fii_sector_data[$fii_sector_data_key-1]->equity );
+                                $equity_diff_percnt = computeGrowthPercentage( $fii_sector_data_value->equity, $fii_sector_data[$fii_sector_data_key-1]->equity );
                             ?>
 
                             <br/>
@@ -247,7 +247,7 @@ $this->load->helper('function_helper');
                             
                             if( !empty($sector) &&  $fii_sector_data_key!=0 ){
                             
-                                $debt_diff_percnt = percentOfTwoNumber( $fii_sector_data_value->debt, $fii_sector_data[$fii_sector_data_key-1]->debt );
+                                $debt_diff_percnt = computeGrowthPercentage( $fii_sector_data_value->debt, $fii_sector_data[$fii_sector_data_key-1]->debt );
                             ?>
 
                             <br/>
@@ -275,7 +275,7 @@ $this->load->helper('function_helper');
                             
                             if( !empty($sector) &&  $fii_sector_data_key!=0 ){
                                 
-                                $hybrid_diff_percnt = percentOfTwoNumber( $fii_sector_data_value->hybrid, $fii_sector_data[$fii_sector_data_key-1]->hybrid );
+                                $hybrid_diff_percnt = computeGrowthPercentage( $fii_sector_data_value->hybrid, $fii_sector_data[$fii_sector_data_key-1]->hybrid );
                             ?>
 
                             <br/>
@@ -296,7 +296,7 @@ $this->load->helper('function_helper');
                             
                             if( !empty($sector) &&  $fii_sector_data_key!=0 ){
                                 
-                                $total_diff_percnt = percentOfTwoNumber( $fii_sector_data_value->total, $fii_sector_data[$fii_sector_data_key-1]->total );
+                                $total_diff_percnt = computeGrowthPercentage( $fii_sector_data_value->total, $fii_sector_data[$fii_sector_data_key-1]->total );
                             ?>
 
                             <br/>
@@ -325,7 +325,7 @@ $this->load->helper('function_helper');
 
                         if( !empty($sector) &&  count($fii_sector_data)>1 ){
 
-                            $equity_percnt = percentOfTwoNumber( $fii_sector_data[$fii_sector_data_key]->equity, $fii_sector_data[0]->equity );
+                            $equity_percnt = computeGrowthPercentage( $fii_sector_data[$fii_sector_data_key]->equity, $fii_sector_data[0]->equity );
                         
                         ?>
 
@@ -347,7 +347,7 @@ $this->load->helper('function_helper');
 
                         if( !empty($sector) &&  count($fii_sector_data)>1 ){
 
-                            $debt_percnt = percentOfTwoNumber( $fii_sector_data[$fii_sector_data_key]->debt, $fii_sector_data[0]->debt );
+                            $debt_percnt = computeGrowthPercentage( $fii_sector_data[$fii_sector_data_key]->debt, $fii_sector_data[0]->debt );
                         
                         ?>
 
@@ -370,7 +370,7 @@ $this->load->helper('function_helper');
 
                         if( !empty($sector) &&  count($fii_sector_data)>1 ){
 
-                            $hybrid_percnt = percentOfTwoNumber( $fii_sector_data[$fii_sector_data_key]->hybrid, $fii_sector_data[0]->hybrid );
+                            $hybrid_percnt = computeGrowthPercentage( $fii_sector_data[$fii_sector_data_key]->hybrid, $fii_sector_data[0]->hybrid );
                         
                         ?>
 
@@ -392,7 +392,7 @@ $this->load->helper('function_helper');
 
                         if( !empty($sector) &&  count($fii_sector_data)>1 ){
 
-                            $total_percnt = percentOfTwoNumber( $fii_sector_data[$fii_sector_data_key]->total, $fii_sector_data[0]->total );
+                            $total_percnt = computeGrowthPercentage( $fii_sector_data[$fii_sector_data_key]->total, $fii_sector_data[0]->total );
                         
                         ?>
 
