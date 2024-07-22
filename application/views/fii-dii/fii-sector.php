@@ -324,12 +324,13 @@ $this->load->helper('function_helper');
 
                         <br/>
                         <span class="<?php echo ($equity_percnt>0 ) ? 'col-green' : 'col-red' ?>">
-
+                        <b>
                         <?php
 
                             echo "(" . $equity_percnt . "%)";
 
                         }?>
+                        </b>
                         </span> 
 
                     </td> 
