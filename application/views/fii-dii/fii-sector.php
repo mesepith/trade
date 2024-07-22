@@ -309,7 +309,7 @@ $this->load->helper('function_helper');
 
                 <?php } ?>
                 <tr>
-                    <td>Total</td>
+                    <td><b>Total</b></td>
                     <td></td>
                     <td></td>
                     <td>
