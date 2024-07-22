@@ -134,7 +134,7 @@ function percentOfTwoNumber($first_number, $second_number) {
  * Display percentage between differance of two number
  */
 
- function percentOfNumbers($current_value, $first_value) {
+ function computeGrowthPercentage($current_value, $first_value) {
     try {
         if ($first_value == 0) {
             throw new Exception('Buying value cannot be zero');
