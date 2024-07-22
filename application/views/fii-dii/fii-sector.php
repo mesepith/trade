@@ -305,6 +305,12 @@ $this->load->helper('function_helper');
                     </tr>
 
                 <?php } ?>
+                <tr>
+                    <td>Total</td>
+                    <td></td>
+                    <td></td>
+                    <td></td> 
+                </tr>
 
             </tbody>
         </table>
