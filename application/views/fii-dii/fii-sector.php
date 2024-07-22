@@ -210,6 +210,7 @@ $this->load->helper('function_helper');
                 <?php 
                     $sum_equity = 0;
                     $sum_debt = 0;
+                    $sum_hybrid = 0;
                     foreach ($fii_sector_data AS $fii_sector_data_key => $fii_sector_data_value) {
                 ?>
 
@@ -266,6 +267,8 @@ $this->load->helper('function_helper');
                         </td>
                         <td>
                             <?php 
+
+                            $sum_hybrid = $sum_hybrid + $fii_sector_data_value->hybrid;
                             
                             echo number_format($fii_sector_data_value->hybrid); 
                             
@@ -352,6 +355,28 @@ $this->load->helper('function_helper');
                         <?php
 
                             echo "(" . $debt_percnt . "%)";
+
+                        }?>
+                        </b>
+                        </span> 
+
+                    </td>
+                    <td>
+                        <b><?php echo number_format($sum_hybrid); ?></b>
+                        <?php 
+
+                        if( !empty($sector) &&  count($fii_sector_data)>1 ){
+
+                            $hybrid_percnt = percentOfTwoNumber( $fii_sector_data[$fii_sector_data_key]->hybrid, $fii_sector_data[0]->hybrid );
+                        
+                        ?>
+
+                        <br/>
+                        <span class="<?php echo ($hybrid_percnt>0 ) ? 'col-green' : 'col-red' ?>">
+                        <b>
+                        <?php
+
+                            echo "(" . $hybrid_percnt . "%)";
 
                         }?>
                         </b>
