@@ -207,7 +207,10 @@ $this->load->helper('function_helper');
             </thead>
             <tbody>
 
-                <?php foreach ($fii_sector_data AS $fii_sector_data_key => $fii_sector_data_value) { ?>
+                <?php 
+                    $sum_equity = 0;
+                    foreach ($fii_sector_data AS $fii_sector_data_key => $fii_sector_data_value) {
+                ?>
 
                     <tr>
                         <td><?php echo date('d-M-Y', strtotime($fii_sector_data_value->report_date)); ?></td>
@@ -215,7 +218,7 @@ $this->load->helper('function_helper');
                         <td><?php echo $fii_sector_data_value->sector_name; ?></td>
                         <td>
                             <?php
-                            
+                            $sum_equity = $sum_equity + $fii_sector_data_value->equity;
                             echo number_format($fii_sector_data_value->equity); 
                             
                             if( !empty($sector) &&  $fii_sector_data_key!=0 ){
@@ -309,7 +312,7 @@ $this->load->helper('function_helper');
                     <td>Total</td>
                     <td></td>
                     <td></td>
-                    <td></td> 
+                    <td><b><?php echo number_format($sum_equity); ?></b></td> 
                 </tr>
 
             </tbody>
