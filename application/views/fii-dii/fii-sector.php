@@ -209,6 +209,7 @@ $this->load->helper('function_helper');
 
                 <?php 
                     $sum_equity = 0;
+                    $sum_debt = 0;
                     foreach ($fii_sector_data AS $fii_sector_data_key => $fii_sector_data_value) {
                 ?>
 
@@ -239,6 +240,7 @@ $this->load->helper('function_helper');
                         <td>
                             <?php 
                             
+                            $sum_debt = $sum_debt  + $fii_sector_data_value->debt;
                             echo number_format($fii_sector_data_value->debt); 
                             
                             if( !empty($sector) &&  $fii_sector_data_key!=0 ){
@@ -328,6 +330,28 @@ $this->load->helper('function_helper');
                         <?php
 
                             echo "(" . $equity_percnt . "%)";
+
+                        }?>
+                        </b>
+                        </span> 
+
+                    </td> 
+                    <td>
+                        <b><?php echo number_format($sum_debt); ?></b>
+                        <?php 
+
+                        if( !empty($sector) &&  count($fii_sector_data)>1 ){
+
+                            $debt_percnt = percentOfTwoNumber( $fii_sector_data[$fii_sector_data_key]->debt, $fii_sector_data[0]->debt );
+                        
+                        ?>
+
+                        <br/>
+                        <span class="<?php echo ($debt_percnt>0 ) ? 'col-green' : 'col-red' ?>">
+                        <b>
+                        <?php
+
+                            echo "(" . $debt_percnt . "%)";
 
                         }?>
                         </b>
