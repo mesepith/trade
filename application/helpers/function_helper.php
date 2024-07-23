@@ -132,6 +132,7 @@ function percentOfTwoNumber($first_number, $second_number) {
 
 /*
  * Display percentage between differance of two number
+ * @author: ChatGpt 4o
  */
 
  function computeGrowthPercentage($current_value, $first_value) {
