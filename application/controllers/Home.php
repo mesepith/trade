@@ -64,6 +64,7 @@ class Home extends MX_Controller {
 
                     $is_price_increase = 'NA';
                     $is_delivery_to_traded_quantity_increase = 'NA';
+                    $is_total_traded_volume_increase = 'NA';
 
                     if(!empty($company_arr[$company_list_value->symbol][$count+1]['close_price'])){
 
