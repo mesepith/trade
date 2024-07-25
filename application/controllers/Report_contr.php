@@ -89,4 +89,17 @@ class Report_contr extends MX_Controller {
         
         echo '<pre>'; print_r($best_stocks_by_sast);
     }
+
+    public function getWeeklyVolumeAvgofStock($company_symbol ='TCS'){
+
+        $this->load->helper('function_helper');
+
+        $this->load->model('Stock_data_model');
+
+        // $company_symbol = base64_url_decode($company_symbol_encode);
+
+        $stock_volume_arr = $this->Stock_data_model->getStocksLast14DaysVol($company_symbol);
+
+
+    }
 }
