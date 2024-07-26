@@ -439,12 +439,12 @@ class Stock_data_model extends CI_Model {
     Desc: Last 2 weeks stocks volume in a list
     */
 
-    function getStocksTwoWeeksVolume($company_symbol){
+    function getStocksTwoWeeksVolume($company_symbol, $table_rows){
 
         $this->db->where('status', 1);
         $this->db->where('company_symbol', $company_symbol);
         $this->db->order_by('id desc');
-        $this->db->limit(10);
+        $this->db->limit($table_rows);
         $this->db->select('total_traded_volume_eod, stock_date');
         $query = $this->db->get('stock_data'); 
 

@@ -119,8 +119,9 @@ class Report_contr extends MX_Controller {
 
             $data = $this->weeklyVolumeGrowthCalculation($company_symbol, $company_id);
 
-            $this->Growth_model->insertStocksTwoWeeksVolumeGrowth($data);
-            exit;
+            if(!empty($data)){ $this->Growth_model->insertStocksTwoWeeksVolumeGrowth($data);}
+
+            // if($company_id > 1){ exit;}
         }
 
 
@@ -134,8 +135,14 @@ class Report_contr extends MX_Controller {
 
         // $company_symbol = base64_url_decode($company_symbol_encode);
 
-        $stock_volume_arr = $this->Stock_data_model->getStocksTwoWeeksVolume($company_symbol);
+        $table_rows = 10;
+
+        $stock_volume_arr = $this->Stock_data_model->getStocksTwoWeeksVolume($company_symbol, $table_rows);
         $market_date = $stock_volume_arr[0]->stock_date;
+
+        if( count($stock_volume_arr) <10) {  return false; }
+
+        echo '<br/> count : ' . count($stock_volume_arr) . '<br/>';
 
         // echo '<pre>'; print_r($stock_volume_arr);
 
