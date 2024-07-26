@@ -1,5 +1,7 @@
 <?php
 
+include_once (dirname(__FILE__) . "/Send_Api_Contr.php");
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Report_contr extends MX_Controller {
@@ -90,7 +92,39 @@ class Report_contr extends MX_Controller {
         echo '<pre>'; print_r($best_stocks_by_sast);
     }
 
-    public function getWeeklyVolumeAvgofStock($company_symbol ='TCS'){
+    public function getWeeklyVolumeGrowth(){
+
+        $Send_Api_Contr = new Send_Api_Contr(); 
+
+        $last_inserted_company_id = 0;
+
+        $company_list = $Send_Api_Contr->listAllCompanies( $last_inserted_company_id );
+        
+    //    echo '<pre>';
+    //    print_r($company_list); exit;
+
+       if(empty($company_list)){   
+            echo 'All companies Growth percentage is inserted';
+            echo '<br/>';
+            
+            return;
+        }
+    
+        foreach ($company_list AS $company_list_value) {
+            
+            $company_symbol = $company_list_value['symbol'];
+            $company_id = $company_list_value['id'];
+
+            $data = $this->weeklyVolumeGrowthCalculation($company_symbol);
+
+            echo '<pre>'; print_r($data);
+            exit;
+        }
+
+
+    }
+
+    function weeklyVolumeGrowthCalculation($company_symbol){
 
         $this->load->helper('function_helper');
 
@@ -98,12 +132,13 @@ class Report_contr extends MX_Controller {
 
         // $company_symbol = base64_url_decode($company_symbol_encode);
 
-        $stock_volume_arr = $this->Stock_data_model->getStocksLast14DaysVol($company_symbol);
+        $stock_volume_arr = $this->Stock_data_model->getStocksTwoWeeksVolume($company_symbol);
+        $market_date = $stock_volume_arr[0]->stock_date;
 
-        echo '<pre>'; print_r($stock_volume_arr);
+        // echo '<pre>'; print_r($stock_volume_arr);
 
         $sum_of_current_week = 0;
-        for($i=0; $i<7; $i++){
+        for($i=0; $i<5; $i++){
 
             $sum_of_current_week = $sum_of_current_week + $stock_volume_arr[$i]->total_traded_volume_eod;
 
@@ -112,7 +147,7 @@ class Report_contr extends MX_Controller {
         echo 'sum_of_current_week : ' .  $sum_of_current_week . '<br/>';
 
         $sum_of_last_week = 0;
-        for($i=7; $i<14; $i++){
+        for($i=5; $i<10; $i++){
 
             echo $stock_volume_arr[$i]->total_traded_volume_eod . '<br/>'; 
 
@@ -122,8 +157,9 @@ class Report_contr extends MX_Controller {
 
         echo 'sum_of_last_week : ' .  $sum_of_last_week . '<br/>';
 
-        echo 'Volume change in percent : ' . computeGrowthPercentage($sum_of_current_week, $sum_of_last_week );
+        $volume_growth = computeGrowthPercentage($sum_of_current_week, $sum_of_last_week );
 
+        return array('market_date'=>$market_date, 'volume_growth'=>$volume_growth);
 
     }
 }

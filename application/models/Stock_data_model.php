@@ -436,16 +436,16 @@ class Stock_data_model extends CI_Model {
 
     /*
     @author: Zahir
-    Desc: Last 14 days stocks volume in a list
+    Desc: Last 2 weeks stocks volume in a list
     */
 
-    function getStocksLast14DaysVol($company_symbol){
+    function getStocksTwoWeeksVolume($company_symbol){
 
         $this->db->where('status', 1);
         $this->db->where('company_symbol', $company_symbol);
         $this->db->order_by('id desc');
-        $this->db->limit(14);
-        $this->db->select('total_traded_volume_eod');
+        $this->db->limit(10);
+        $this->db->select('total_traded_volume_eod, stock_date');
         $query = $this->db->get('stock_data'); 
 
         // echo '<pre>'; print_r($query->result());
