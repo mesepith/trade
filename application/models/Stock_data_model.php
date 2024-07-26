@@ -448,7 +448,9 @@ class Stock_data_model extends CI_Model {
         $this->db->select('total_traded_volume_eod');
         $query = $this->db->get('stock_data'); 
 
-        echo '<pre>'; print_r($query->result());
+        // echo '<pre>'; print_r($query->result());
+
+        return $query->result();
 
     }
    

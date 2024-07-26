@@ -100,6 +100,30 @@ class Report_contr extends MX_Controller {
 
         $stock_volume_arr = $this->Stock_data_model->getStocksLast14DaysVol($company_symbol);
 
+        echo '<pre>'; print_r($stock_volume_arr);
+
+        $sum_of_current_week = 0;
+        for($i=0; $i<7; $i++){
+
+            $sum_of_current_week = $sum_of_current_week + $stock_volume_arr[$i]->total_traded_volume_eod;
+
+        }
+
+        echo 'sum_of_current_week : ' .  $sum_of_current_week . '<br/>';
+
+        $sum_of_last_week = 0;
+        for($i=7; $i<14; $i++){
+
+            echo $stock_volume_arr[$i]->total_traded_volume_eod . '<br/>'; 
+
+            $sum_of_last_week = $sum_of_last_week + $stock_volume_arr[$i]->total_traded_volume_eod;
+
+        }
+
+        echo 'sum_of_last_week : ' .  $sum_of_last_week . '<br/>';
+
+        echo 'Volume change in percent : ' . computeGrowthPercentage($sum_of_current_week, $sum_of_last_week );
+
 
     }
 }
