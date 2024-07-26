@@ -94,6 +94,8 @@ class Report_contr extends MX_Controller {
 
     public function getWeeklyVolumeGrowth(){
 
+        $this->load->model('Growth_model');
+
         $Send_Api_Contr = new Send_Api_Contr(); 
 
         $last_inserted_company_id = 0;
@@ -118,6 +120,8 @@ class Report_contr extends MX_Controller {
             $data = $this->weeklyVolumeGrowthCalculation($company_symbol);
 
             echo '<pre>'; print_r($data);
+
+            $this->Stock_data_model->getStocksTwoWeeksVolume($company_symbol);
             exit;
         }
 
