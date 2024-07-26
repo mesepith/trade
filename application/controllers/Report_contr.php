@@ -117,18 +117,16 @@ class Report_contr extends MX_Controller {
             $company_symbol = $company_list_value['symbol'];
             $company_id = $company_list_value['id'];
 
-            $data = $this->weeklyVolumeGrowthCalculation($company_symbol);
+            $data = $this->weeklyVolumeGrowthCalculation($company_symbol, $company_id);
 
-            echo '<pre>'; print_r($data);
-
-            $this->Stock_data_model->getStocksTwoWeeksVolume($company_symbol);
+            $this->Growth_model->insertStocksTwoWeeksVolumeGrowth($data);
             exit;
         }
 
 
     }
 
-    function weeklyVolumeGrowthCalculation($company_symbol){
+    function weeklyVolumeGrowthCalculation($company_symbol, $company_id){
 
         $this->load->helper('function_helper');
 
@@ -163,7 +161,7 @@ class Report_contr extends MX_Controller {
 
         $volume_growth = computeGrowthPercentage($sum_of_current_week, $sum_of_last_week );
 
-        return array('market_date'=>$market_date, 'volume_growth'=>$volume_growth);
+        return array('company_id'=>$company_id, 'company_symbol'=>$company_symbol,'market_date'=>$market_date, 'growth_percent'=>$volume_growth, 'calculation_date'=>date('Y-m-d'), 'name'=>'volume', 'type'=>'weekly', 'logic'=>'difference_of_current_and_previous_week');
 
     }
 }
