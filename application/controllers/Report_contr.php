@@ -119,9 +119,13 @@ class Report_contr extends MX_Controller {
 
             $data = $this->weeklyVolumeGrowthCalculation($company_symbol, $company_id);
 
+            echo '<pre>'; print_r($data);
+
+            if($company_id > 0){ exit;}
+
             if(!empty($data)){ $this->Growth_model->insertStocksTwoWeeksVolumeGrowth($data);}
 
-            // if($company_id > 1){ exit;}
+            
         }
 
 
@@ -140,27 +144,29 @@ class Report_contr extends MX_Controller {
         $stock_volume_arr = $this->Stock_data_model->getStocksTwoWeeksVolume($company_symbol, $table_rows);
         $market_date = $stock_volume_arr[0]->stock_date;
 
-        if( count($stock_volume_arr) <10) {  return false; }
+        if( count($stock_volume_arr) <$table_rows) {  return false; }
 
-        echo '<br/> count : ' . count($stock_volume_arr) . '<br/>';
+        echo '<br/>' .$company_symbol. ':  count : ' . count($stock_volume_arr) . '<br/>';
 
         // echo '<pre>'; print_r($stock_volume_arr);
 
         $sum_of_current_week = 0;
-        for($i=0; $i<5; $i++){
+        for($i=0; $i<($table_rows/2); $i++){
 
-            $sum_of_current_week = $sum_of_current_week + $stock_volume_arr[$i]->total_traded_volume_eod;
+            // echo $stock_volume_arr[$i]->total_traded_volume . '<br/>'; 
+
+            $sum_of_current_week = $sum_of_current_week + $stock_volume_arr[$i]->total_traded_volume;
 
         }
 
         echo 'sum_of_current_week : ' .  $sum_of_current_week . '<br/>';
 
         $sum_of_last_week = 0;
-        for($i=5; $i<10; $i++){
+        for($i=5; $i<$table_rows; $i++){
 
-            echo $stock_volume_arr[$i]->total_traded_volume_eod . '<br/>'; 
+            // echo $stock_volume_arr[$i]->total_traded_volume . '<br/>'; 
 
-            $sum_of_last_week = $sum_of_last_week + $stock_volume_arr[$i]->total_traded_volume_eod;
+            $sum_of_last_week = $sum_of_last_week + $stock_volume_arr[$i]->total_traded_volume;
 
         }
 

@@ -12,8 +12,6 @@ class Growth_model extends CI_Model {
 
      function insertStocksTwoWeeksVolumeGrowth($data){
 
-        echo '<pre>'; print_r($data);
-
         $db_debug = $this->db->db_debug; //save setting
 
         $this->db->db_debug = FALSE;

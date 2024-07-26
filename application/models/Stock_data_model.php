@@ -445,10 +445,10 @@ class Stock_data_model extends CI_Model {
         $this->db->where('company_symbol', $company_symbol);
         $this->db->order_by('id desc');
         $this->db->limit($table_rows);
-        $this->db->select('total_traded_volume_eod, stock_date');
+        $this->db->select('total_traded_volume, stock_date');
         $query = $this->db->get('stock_data'); 
 
-        // echo '<pre>'; print_r($query->result());
+        // echo '<pre>'; print_r($query->result()); 
 
         return $query->result();
 
