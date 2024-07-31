@@ -144,7 +144,7 @@ class Report_contr extends MX_Controller {
         $stock_volume_arr = $this->Stock_data_model->getStocksTwoWeeksVolume($company_symbol, $table_rows);
         $market_date = $stock_volume_arr[0]->stock_date;
 
-        if( count($stock_volume_arr) <$table_rows) {  return false; }
+        if( count($stock_volume_arr) <$table_rows) {  return false; } //if return false, it means we don't have 10 days(2 trading weeks) data
 
         echo '<br/>' .$company_symbol. ':  count : ' . count($stock_volume_arr) . '<br/>';
 
