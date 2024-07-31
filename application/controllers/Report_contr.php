@@ -92,7 +92,7 @@ class Report_contr extends MX_Controller {
         echo '<pre>'; print_r($best_stocks_by_sast);
     }
 
-    public function getWeeklyVolumeGrowth(){
+    public function insertWeeklyVolumeGrowth(){
 
         $this->load->model('Growth_model');
 
