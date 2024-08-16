@@ -92,6 +92,10 @@ class Report_contr extends MX_Controller {
         echo '<pre>'; print_r($best_stocks_by_sast);
     }
 
+    /**
+     * @author : Zahir
+     * Desc: Checking growth by volume implement
+     */
     public function insertWeeklyVolumeGrowth(){
 
         $this->load->model('Growth_model');
