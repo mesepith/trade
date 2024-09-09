@@ -94,7 +94,7 @@ class Report_contr extends MX_Controller {
 
     /**
      * @author : Zahir
-     * Desc: Checking growth by volume implement
+     * Desc: Insert Growth data and Checking growth by volume implement
      */
     public function insertWeeklyVolumeGrowth(){
 
