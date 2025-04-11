@@ -146,36 +146,37 @@ class Fii_Dii extends MX_Controller {
         
 //        echo $filename . '-total-column-' . $total_column . '-total-rows-' . $total_rows;
         
-        for( $row=3; $row<=$total_rows; $row++){
+        for( $row=4; $row<=$total_rows; $row++){
             
             if(empty($data['data'][$row])){continue;}
             
             $sectors_investment_data = $data['data'][$row];
             
             if(empty($sectors_investment_data[1])){continue;}
-            
-            if( (empty($sectors_investment_data[18])) && empty($sectors_investment_data[19]) && empty($sectors_investment_data[20]) && empty($sectors_investment_data[21])){
+
+            //If Total of All the investment type is empty, then it means it has no value
+            if( (empty($sectors_investment_data[13])) && empty($sectors_investment_data[37]) && empty($sectors_investment_data[61]) && empty($sectors_investment_data[85])){
                 
                 continue;
             }
 
             /** 1st part of Net AUC  Start  */
-            
-            $this->nsdlFiiSectoreInsert($report_date, $data['data'][0][2], $sectors_investment_data[1], $sectors_investment_data[2], $sectors_investment_data[3], $sectors_investment_data[4], $sectors_investment_data[5], $sectors_investment_data[6] );        
+            //Parameters $report_date, $investment_type, $sector_name, $equity, $debt, $debt_vrr, $hybrid, $total
+            $this->nsdlFiiSectoreInsert($report_date, $data['data'][0][2], $sectors_investment_data[1], $sectors_investment_data[2], $sectors_investment_data[3], $sectors_investment_data[4], $sectors_investment_data[6], $sectors_investment_data[13] );        
             /** 1st part of Net AUC  End    */
             
             /** 1st part of Net Investment  Start  */
             
-            $this->nsdlFiiSectoreInsert($report_date, $data['data'][0][12], $sectors_investment_data[1], $sectors_investment_data[12], $sectors_investment_data[13], $sectors_investment_data[14], $sectors_investment_data[15], $sectors_investment_data[16] ); 
+            $this->nsdlFiiSectoreInsert($report_date, $data['data'][0][26], $sectors_investment_data[1], $sectors_investment_data[26], $sectors_investment_data[27], $sectors_investment_data[28], $sectors_investment_data[30], $sectors_investment_data[37] ); 
 
             /** 1st part of Net Investment  End  */
 
             /** 2nd part of Net Investment  Start  */
-            $this->nsdlFiiSectoreInsert($report_date, $data['data'][0][22], $sectors_investment_data[1], $sectors_investment_data[22], $sectors_investment_data[23], $sectors_investment_data[24], $sectors_investment_data[25], $sectors_investment_data[26] );
+            $this->nsdlFiiSectoreInsert($report_date, $data['data'][0][50], $sectors_investment_data[1], $sectors_investment_data[50], $sectors_investment_data[51], $sectors_investment_data[52], $sectors_investment_data[54], $sectors_investment_data[61] );
             /** 2nd part of Net Investment  End  */
 
             /** 2nd part of Net AUC  Start    */
-            $this->nsdlFiiSectoreInsert($report_date, $data['data'][0][32], $sectors_investment_data[1], $sectors_investment_data[32], $sectors_investment_data[33], $sectors_investment_data[34], $sectors_investment_data[35], $sectors_investment_data[36] );
+            $this->nsdlFiiSectoreInsert($report_date, $data['data'][0][74], $sectors_investment_data[1], $sectors_investment_data[74], $sectors_investment_data[75], $sectors_investment_data[76], $sectors_investment_data[77], $sectors_investment_data[85] );
             /** 2nd part of Net AUC  End    */
             
         }
