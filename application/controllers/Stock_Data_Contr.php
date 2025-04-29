@@ -54,7 +54,7 @@ class Stock_Data_Contr extends MX_Controller {
 
      /*
      * @author: ZAHIR
-     * DESC: Check if todays stock is inserted by checking the famous stocks
+     * DESC: Check if todays stock is inserted by checking the famous stocks .
      */
     
      public function checkTodaysStockInserted( ) {
