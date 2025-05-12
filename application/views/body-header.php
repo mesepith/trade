@@ -50,6 +50,16 @@
                         <a class="dropdown-item" href="<?php echo base_url() . 'nifty-heavy-weight-stocks'; ?>">Nifty Heavy Weight</a>
                     </div>
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Up Stocks
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="<?php echo base_url() . 'up-stocks/daily/5-pecent-up-on-last-trade'; ?>">5% UP on Last Trade</a>
+                    </div>
+                </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Option Chain Analysis
