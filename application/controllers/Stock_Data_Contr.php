@@ -62,11 +62,9 @@ class Stock_Data_Contr extends MX_Controller {
         
         $this->load->model('Stock_data_model');   
         
-        echo $is_a_present = $this->Stock_data_model->checkTodaysStockInserted(FAMOUS_STOCK_A);
-        echo $is_b_present = $this->Stock_data_model->checkTodaysStockInserted(FIRST_SERIAL_FAMOUS_STOCK);
         echo $is_c_present = $this->Stock_data_model->checkTodaysStockInserted(LAST_SERIAL_FAMOUS_STOCK);
 
-        if($is_a_present == 0 || $is_b_present == 0  || $is_c_present == 0 ){
+        if( $is_c_present == 0 ){
 
             $System_Notification_contr = new System_Notification_Controller();
             echo '<br/> Todays Stock data is not inserted';
