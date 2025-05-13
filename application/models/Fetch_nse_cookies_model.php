@@ -22,6 +22,7 @@ class Fetch_nse_cookies_model extends CI_Model {
         $data['parent_id'] = $parent_id;
         $data['main_url_id'] = $main_url_id;
         $data['nse_cookies_url_id'] = $nse_cookies_url_id;
+        $data["created_at"] = date("Y-m-d H:i:s");
 
         $this->db->insert('nse_cookies', $data);
         return $this->db->insert_id();
