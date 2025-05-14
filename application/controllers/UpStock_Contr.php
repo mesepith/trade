@@ -11,10 +11,12 @@ class UpStock_Contr extends MX_Controller {
     
      public function fivePercentUpOnLastTradeStocks( ) {
 
-         $data['stocks'] = $this->UpStock_model->getStocksUpByPercentToday(5);
-        $data['title'] = "Stocks 5% UP on Last Trade";
-        echo '<pre>'; print_r($data);
-        // $this->load->view('stocks/up_stocks', $data);
+         $data['nestedData']['stocks'] = $this->UpStock_model->getStocksUpByPercentToday(5);
+        $data['nestedData']['title'] = "Stocks 5% UP on Last Trade";
+        // echo '<pre>'; print_r($data);
+        $data['content'] = "up_stocks/latest_up_stock";
+        $this->load->view('index', $data);
+        // $this->load->view('up_stocks/latest_up_stock', $data);
 
     }
 
