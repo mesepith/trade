@@ -49,7 +49,7 @@
                         <td><?php echo $stock['company_name']; ?></td>
                         <td><?php echo $stock['close_price']; ?></td>
                         <td><?php echo $stock['price_change_in_p']; ?>%</td>
-                        <td><?php echo $stock['stock_date']; ?></td>
+                        <td><?php echo date('d M Y', strtotime($stock['stock_date'])); ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
