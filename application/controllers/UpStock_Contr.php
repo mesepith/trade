@@ -23,6 +23,7 @@ class UpStock_Contr extends MX_Controller {
     public function tenPercentUpInFiveSessions() {
         $data['nestedData']['stocks'] = $this->UpStock_model->getStocksUpByCumulativePercent(10, 5);
         $data['nestedData']['title'] = "10% UP in Last 5 Trading Sessions";
+        // echo '<pre>'; print_r($data); exit;
         $data['content'] = "up_stocks/up_stocks_multi";
         $this->load->view('index', $data);
     }
