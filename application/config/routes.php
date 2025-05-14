@@ -298,3 +298,6 @@ $route['future/rollover/day-wise-analysis'] = 'Future/dayWiseRolloverAnalysis';
  * Bullies Stocks
  */
 $route['up-stocks/five-pecent-up-on-last-trade'] = 'UpStock_Contr/fivePercentUpOnLastTradeStocks';
+$route['up-stocks/ten-percent-up-in-five-sessions'] = 'UpStock_Contr/tenPercentUpInFiveSessions';
+$route['up-stocks/fifteen-percent-up-in-ten-sessions'] = 'UpStock_Contr/fifteenPercentUpInTenSessions';
+
