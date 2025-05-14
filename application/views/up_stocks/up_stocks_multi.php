@@ -1,3 +1,4 @@
+<?php $this->load->helper('function_helper'); ?>
 <style>
 #stockSearchInput {
   width: 100%;
@@ -37,7 +38,11 @@
             <tbody>
                 <?php foreach ($stocks as $stock): ?>
                     <tr>
-                        <td><?php echo $stock['company_symbol']; ?></td>
+                        <td>
+                            <a href="<?php echo base_url('daily-log/'.$stock['company_id'].'/' . base64_url_encode($stock['company_symbol'])); ?>">
+                                <?php echo $stock['company_symbol']; ?>
+                            </a>
+                        </td>
                         <td><?php echo $stock['company_name']; ?></td>
                         <td><?php echo round($stock['total_change'], 2); ?>%</td>
                     </tr>
