@@ -21,15 +21,17 @@ class UpStock_Contr extends MX_Controller {
     }
 
     public function tenPercentUpInFiveSessions() {
-        $data['stocks'] = $this->UpStock_model->getStocksUpByCumulativePercent(10, 5);
-        $data['title'] = "10% UP in Last 5 Trading Sessions";
-        $this->load->view('stocks/up_stocks_multi', $data);
+        $data['nestedData']['stocks'] = $this->UpStock_model->getStocksUpByCumulativePercent(10, 5);
+        $data['nestedData']['title'] = "10% UP in Last 5 Trading Sessions";
+        $data['content'] = "up_stocks/up_stocks_multi";
+        $this->load->view('index', $data);
     }
 
     public function fifteenPercentUpInTenSessions() {
-        $data['stocks'] = $this->UpStock_model->getStocksUpByCumulativePercent(15, 10);
-        $data['title'] = "15% UP in Last 10 Trading Sessions";
-        $this->load->view('stocks/up_stocks_multi', $data);
+        $data['nestedData']['stocks'] = $this->UpStock_model->getStocksUpByCumulativePercent(15, 10);
+        $data['nestedData']['title'] = "15% UP in Last 10 Trading Sessions";
+        $data['content'] = "up_stocks/up_stocks_multi";
+        $this->load->view('index', $data);
     }
 
 }
