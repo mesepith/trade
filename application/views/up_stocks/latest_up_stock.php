@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title><?php echo $title; ?></title>
-</head>
-<body>
+<div class="container">
     <h1><?php echo $title; ?></h1>
 
     <?php if (!empty($stocks)): ?>
@@ -32,5 +27,4 @@
     <?php else: ?>
         <p>No stocks found with that much rise today.</p>
     <?php endif; ?>
-</body>
-</html>
+</div>
