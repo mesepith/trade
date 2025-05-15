@@ -35,6 +35,7 @@
                     <th>Name</th>
                     <th>Close Price</th>
                     <th>% Change</th>
+                    <th>Market Cap(Cr.)</th>
                     <th>Date</th>
                 </tr>
             </thead>
@@ -49,6 +50,7 @@
                         <td><?php echo $stock['company_name']; ?></td>
                         <td><?php echo $stock['close_price']; ?></td>
                         <td><?php echo $stock['price_change_in_p']; ?>%</td>
+                        <td><?php echo number_format($stock['total_market_cap'], 2); ?></td>
                         <td><?php echo date('d M Y', strtotime($stock['stock_date'])); ?></td>
                     </tr>
                 <?php endforeach; ?>
