@@ -57,6 +57,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="<?php echo base_url() . 'up-stocks/five-pecent-up-on-last-trade'; ?>">5% UP on Last Trade</a>
+                        <a class="dropdown-item" href="<?= base_url('up-stocks/5-percent-up-in-1-sessions'); ?>">5% UP on Latest Sessions</a>
                         <a class="dropdown-item" href="<?= base_url('up-stocks/10-percent-up-in-2-sessions'); ?>">10% UP on Two Sessions</a>
                         <a class="dropdown-item" href="<?= base_url('up-stocks/15-percent-up-in-3-sessions'); ?>">15% UP on 3 Sessions</a>
                         <a class="dropdown-item" href="<?= base_url('up-stocks/20-percent-up-in-4-sessions'); ?>">20% UP on 4 Sessions</a>
