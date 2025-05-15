@@ -34,6 +34,7 @@
                     <th>Name</th>
                     <th>Total % Change</th>
                     <th>Market Cap(Cr.)</th>
+                    <th>Current 5 Days Change</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,6 +48,7 @@
                         <td><?php echo $stock['company_name']; ?></td>
                         <td><?php echo round($stock['total_change'], 2); ?>%</td>
                         <td><?php echo number_format($stock['total_market_cap'], 2); ?></td>
+                        <td><?php echo $stock['price_change_5']; ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
