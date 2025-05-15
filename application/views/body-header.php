@@ -57,10 +57,11 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="<?php echo base_url() . 'up-stocks/five-pecent-up-on-last-trade'; ?>">5% UP on Last Trade</a>
-                        <a class="dropdown-item" href="<?php echo base_url() . 'up-stocks/ten-percent-up-in-two-sessions'; ?>">10% UP on Two Session</a>
-                        <a class="dropdown-item" href="<?php echo base_url() . 'up-stocks/fifteen-percent-up-in-three-sessions'; ?>">15% UP on 3 Session</a>
-                        <a class="dropdown-item" href="<?php echo base_url() . 'up-stocks/twenty-percent-up-in-four-sessions'; ?>">20% UP on 4 Session</a>
-                        <a class="dropdown-item" href="<?php echo base_url() . 'up-stocks/twentyfive-percent-up-in-four-sessions'; ?>">25% UP on 5 Session</a>
+                        <a class="dropdown-item" href="<?= base_url('up-stocks/10-percent-up-in-2-sessions'); ?>">10% UP on Two Sessions</a>
+                        <a class="dropdown-item" href="<?= base_url('up-stocks/15-percent-up-in-3-sessions'); ?>">15% UP on 3 Sessions</a>
+                        <a class="dropdown-item" href="<?= base_url('up-stocks/20-percent-up-in-4-sessions'); ?>">20% UP on 4 Sessions</a>
+                        <a class="dropdown-item" href="<?= base_url('up-stocks/25-percent-up-in-5-sessions'); ?>">25% UP on 5 Sessions</a>
+
                     </div>
                 </li>
 
