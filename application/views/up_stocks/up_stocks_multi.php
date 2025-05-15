@@ -24,6 +24,15 @@
 
 <div class="container">
     <h1><?php echo $title; ?></h1>
+    
+    <div style="margin: 15px 0; border : 1px solid #ddd; padding: 10px 15px; border-radius: 5px;">
+       <label id="capRangeLabel" style="font-weight:bold; font-size:18px; color:mediumvioletred; display: flex; justify-content: space-between;">
+        <span>Min: <span id="capMinVal">0.1</span> Cr.</span>
+        <span>Max: <span id="capMaxVal">60,000</span> Cr.</span>
+      </label>
+      <div id="capRangeSlider" style="margin-top: 10px;"></div>
+    </div>
+
 
     <?php if (!empty($stocks)): ?>
         <input type="text" id="stockSearchInput" onkeyup="filterStocks()" placeholder="Search for company name or symbol...">
@@ -78,23 +87,79 @@
 </div>
 
 <script>
-function filterStocks() {
-  var input = document.getElementById("stockSearchInput");
-  var filter = input.value.toUpperCase();
-  var table = document.getElementById("stockTable");
-  var tr = table.getElementsByTagName("tr");
 
-  for (var i = 1; i < tr.length; i++) {
-    var symbol = tr[i].getElementsByTagName("td")[0];
-    var name = tr[i].getElementsByTagName("td")[1];
-    if (symbol && name) {
-      var textValue = symbol.textContent + " " + name.textContent;
-      if (textValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
+function filterStocks() {
+    const input = document.getElementById("stockSearchInput").value.toUpperCase();
+    const minCap = $("#capMinVal").data("raw");
+    const maxCap = $("#capMaxVal").data("raw");
+
+    const table = document.getElementById("stockTable");
+    const tr = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < tr.length; i++) {
+        const symbol = tr[i].getElementsByTagName("td")[0];
+        const name = tr[i].getElementsByTagName("td")[1];
+        const marketCap = tr[i].getElementsByTagName("td")[3];
+
+        if (symbol && name && marketCap) {
+            const textValue = (symbol.textContent + " " + name.textContent).toUpperCase();
+            const rawCapText = marketCap.textContent.replace(/[^0-9.]/g, '');
+            const marketCapValue = parseFloat(rawCapText);
+
+            if (isNaN(marketCapValue)) {
+                tr[i].style.display = "none";
+                continue;
+            }
+
+            const matchesSearch = textValue.indexOf(input) > -1;
+            const inRange = marketCapValue >= minCap && marketCapValue <= maxCap;
+
+            tr[i].style.display = (matchesSearch && inRange) ? "" : "none";
+        }
     }
-  }
 }
+
+
+$(function () {
+    const sliderMin = 0.1;
+    const sliderMax = 60000;
+
+    $("#capRangeSlider").slider({
+        range: true,
+        min: sliderMin,
+        max: sliderMax,
+        values: [sliderMin, sliderMax],
+        step: 1,
+        slide: function (event, ui) {
+            const minFormatted = ui.values[0].toLocaleString("en-IN", {
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 2
+            });
+            const maxFormatted = ui.values[1].toLocaleString("en-IN", {
+                maximumFractionDigits: 2
+            });
+
+            $("#capMinVal").text(minFormatted);
+            $("#capMaxVal").text(maxFormatted);
+
+            // Save raw values for filter logic
+            $("#capMinVal").data("raw", ui.values[0]);
+            $("#capMaxVal").data("raw", ui.values[1]);
+
+            filterStocks();
+        }
+    });
+
+    // On page load: set label text and store raw values
+    const initialVals = $("#capRangeSlider").slider("values");
+    $("#capMinVal")
+        .text(initialVals[0].toLocaleString("en-IN", { minimumFractionDigits: 1 }))
+        .data("raw", initialVals[0]);
+
+    $("#capMaxVal")
+        .text(initialVals[1].toLocaleString("en-IN", { maximumFractionDigits: 2 }))
+        .data("raw", initialVals[1]);
+});
+
+
 </script>
