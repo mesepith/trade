@@ -48,7 +48,26 @@
                         <td><?php echo $stock['company_name']; ?></td>
                         <td><?php echo round($stock['total_change'], 2); ?>%</td>
                         <td><?php echo number_format($stock['total_market_cap'], 2); ?></td>
-                        <td><?php echo $stock['price_change_5']; ?></td>
+                        <td>
+                          <?php
+                          $changes = explode('|', $stock['price_change_5']);
+                          foreach ($changes as $i => $change) {
+                              $trimmed = trim($change);
+                              if ($trimmed === '-') {
+                                  echo '<span style="color: gray;">-</span>';
+                              } elseif (floatval($trimmed) > 0) {
+                                  echo '<span style="color: green;">' . $trimmed . '%</span>';
+                              } elseif (floatval($trimmed) < 0) {
+                                  echo '<span style="color: red;">' . $trimmed . '%</span>';
+                              } else {
+                                  echo '<span>' . $trimmed . '%</span>';
+                              }
+
+                              // Add pipe (|) separator between values
+                              if ($i < count($changes) - 1) echo ' | ';
+                          }
+                          ?>
+                      </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
