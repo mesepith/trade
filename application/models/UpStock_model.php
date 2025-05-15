@@ -42,7 +42,10 @@ class UpStock_model extends CI_Model {
         $date_values = array_column($dates, 'stock_date');
 
         // Fix for ONLY_FULL_GROUP_BY mode
-        $this->db->select('MAX(company_id) as company_id, company_symbol, MAX(company_name) as company_name, SUM(price_change_in_p) AS total_change');
+        $this->db->select('MAX(company_id) as company_id, 
+        company_symbol, MAX(company_name) as company_name, 
+        MAX(total_market_cap) as total_market_cap,
+        SUM(price_change_in_p) AS total_change');
         $this->db->from('stock_data');
         $this->db->where_in('stock_date', $date_values);
         $this->db->group_by('company_symbol');

@@ -33,6 +33,7 @@
                     <th>Symbol</th>
                     <th>Name</th>
                     <th>Total % Change</th>
+                    <th>Market Cap(Cr.)</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,6 +46,7 @@
                         </td>
                         <td><?php echo $stock['company_name']; ?></td>
                         <td><?php echo round($stock['total_change'], 2); ?>%</td>
+                        <td><?php echo number_format($stock['total_market_cap'], 2); ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
