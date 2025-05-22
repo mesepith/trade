@@ -9,6 +9,10 @@ class UpStock_Contr extends MX_Controller {
         $this->load->model('UpStock_model');
     }
     
+    /*
+    @author: Zahir
+    Desc: 
+    */
      public function fivePercentUpOnLastTradeStocks( ) {
 
          $data['nestedData']['stocks'] = $this->UpStock_model->getStocksUpByPercentToday(5);
