@@ -11,7 +11,7 @@ class UpStock_Contr extends MX_Controller {
     
     /*
     @author: Zahir
-    Desc: 
+    Desc: fivePercentUpOnLastTradeStocks
     */
      public function fivePercentUpOnLastTradeStocks( ) {
 
