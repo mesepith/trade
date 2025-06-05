@@ -24,6 +24,10 @@ class UpStock_Contr extends MX_Controller {
 
     }
 
+    /*
+    @author: Zahir
+    */
+
     public function upByPercent($percent = 10, $sessions = 2) {
         $data['nestedData']['stocks'] = $this->UpStock_model->getStocksUpByCumulativePercent($percent, $sessions);
         $data['nestedData']['title'] = "{$percent}% UP in Last {$sessions} Trading Sessions";
