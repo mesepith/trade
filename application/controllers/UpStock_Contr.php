@@ -26,6 +26,7 @@ class UpStock_Contr extends MX_Controller {
 
     /*
     @author: Zahir
+    @desc: This function will return stocks that are up by a certain percentage over a specified number of trading sessions.
     */
 
     public function upByPercent($percent = 10, $sessions = 2) {
