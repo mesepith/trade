@@ -7,6 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /*
 @author: Zahir Alam
 @date: 14-May-2025
+@Desc: Model to fetch stocks that are up by a certain percentage today or over a cumulative period.
 */
 class UpStock_model extends CI_Model {
     
