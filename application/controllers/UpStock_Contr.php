@@ -12,6 +12,7 @@ class UpStock_Contr extends MX_Controller {
     /*
     @author: Zahir
     Desc: fivePercentUpOnLastTradeStocks
+    @desc: This function will return stocks that are up by 5% on the last trade.
     */
      public function fivePercentUpOnLastTradeStocks( ) {
 
